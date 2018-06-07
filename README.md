@@ -18,22 +18,24 @@ En esta etapa también realizamos una entrevista donde encontramos los siguiente
 En esta etapa generamos un Diseño de interacción, el cual se describe a continuación:
 
 - Primer Nivel *Selección de cohort*
-+ 'General'
-+ 'AM'
-+ 'PM'
+  + 'General'
+  + 'AM'
+  + 'PM'
 
 - Segundo Nivel *Vista general con filtros*
-+ 'Nombres asc/ desc.'
-+ 'Porcentaje general de Ejercicios Completados asc/desc.'
-+ 'Porcentaje general de Quizzes Completados asc/desc.'
-+ 'Score promedio de Quizzes Completados asc/desc.'
-+ 'Porcentaje general de Lecturas Completados asc/desc.'
+  + 'Nombres asc/ desc.'
+  + 'Porcentaje general de Ejercicios Completados asc/desc.'
+  + 'Porcentaje general de Quizzes Completados asc/desc.'
+  + 'Score promedio de Quizzes Completados asc/desc.'
+  + 'Porcentaje general de Lecturas Completados asc/desc.'
+
 - Segundo Nivel *Vista de gráficas*
-+ '5 mejores desempeños.'
-+ '3 peores desempeños.'
-+ 'Avance general del Cohort.'
+  + '5 mejores desempeños.'
+  + '3 peores desempeños.'
+  + 'Avance general del Cohort.'
+
 - Segundo Nivel *Búsqueda de alumnas*
-+ 'perfil de alumnas.'
+  + 'Perfil de alumnas.'
 
 ## 3.Ideación
 A continuación están los sketchs del producto a realizar.
