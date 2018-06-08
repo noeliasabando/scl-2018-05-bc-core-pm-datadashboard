@@ -39,7 +39,7 @@ A continuación están los sketchs del producto a realizar.
 
 ### Sketch de Baja Fidelidad
 <img src="/img/sketch baja fidelidad.jpeg" alt="Sketch de Baja Fidelidad"/>
-<img src="/img/sketch baja fidelidad 1.jpeg" alt="Sketch de Baja Fidelidad"/>
+
 
 
 ### Sketch de Alta Fidelidad
