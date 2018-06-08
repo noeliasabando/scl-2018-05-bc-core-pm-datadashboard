@@ -17,22 +17,19 @@ En esta etapa también realizamos una entrevista donde encontramos los siguiente
 ## 2. Síntesis y Definición
 En esta etapa generamos un Diseño de interacción, el cual se describe a continuación:
 
-- Primer Nivel *Selección de cohort*
-  + General
-  + AM
-  + PM
+- Primer Nivel *Selección de paises*
+  + Países
+  + Año
+  + Ciudad 
+  + Etapa/Especialización
 
-- Segundo Nivel *Vista general con filtros*
+- Segundo Nivel *Selección de cohort*
+  + Hitos
   + Nombres asc/ desc.
   + Porcentaje general de Ejercicios Completados asc/desc.
   + Porcentaje general de Quizzes Completados asc/desc.
   + Score promedio de Quizzes Completados asc/desc.
   + Porcentaje general de Lecturas Completados asc/desc.
-
-- Segundo Nivel *Vista de gráficas*
-  + Tres mejores desempeños.
-  + Tres peores desempeños.
-  + Avance general del Cohort.
 
 - Segundo Nivel *Búsqueda de alumnas*
   + Perfil de alumnas.
@@ -44,4 +41,5 @@ A continuación están los sketchs del producto a realizar.
 <img src="/img/scketchbajafidelidad.jpeg" alt="Sketch de Baja Fidelidad"/>
 
 ### Sketch de Alta Fidelidad
+[Ir al scket de Alta Fidelidad](https://www.figma.com/proto/bd2lDczPiNs1tU7hO6y08zme/General?scaling=contain&node-id=34%3A146) 
 
