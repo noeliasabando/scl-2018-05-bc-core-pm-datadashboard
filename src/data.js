@@ -8,23 +8,26 @@ window.computeUsersStats = (users, progress, courses) => {
         percent : promedioCursos(progress[user.id], courses),
         exercises : {
           total: totalExcercises(progress[user.id], courses),
-          completed: usersExcercise(progress, courses),
-          percent: true,
+          completed: completeExcercise(progress, courses),
+          percent: (completeExcercise(progress, courses)/ totalExcercises(progress, courses))*100, //puedo parsear una funcion?????
         },
         reads: {
           total: totalReads(progress, courses),
           completed: completedReads(progress, courses),
-          percent: true,
+          percent: (completedReads(progress, courses)/ totalReads(progress, courses))*100,
         },
         quizzes: {
-          
+          total: totalQuizzes(progress, courses),
+          completed: (completeQuizzes(progress, courses),
+          percent: (completeQuizzes(progress, courses)/ totalQuizzes(progress, courses))*100,
+          scoreSum: true,
+          scoreAvg: true,          
         }
       }
       return user
     }
-  )
   return lista
-}
+  }
 
 function promedioCursos(progress, courses) {
   let contador = 0;
@@ -47,7 +50,7 @@ function totalExcercises(progress, courses) {
   return total;
 }
 
-function usersExcercise(progress, courses){
+function completeExcercise(progress, courses){
   let total= 0;
   courses.forEach(curso =>{
     Object.values(progress[curso].units).forEach(unit =>{
@@ -64,8 +67,6 @@ function usersExcercise(progress, courses){
   return total;
 }
 
-function percentExcercise()
-
 function totalReads(progress, courses) {
   let total=0;
   courses.forEach(curso =>{
@@ -81,16 +82,12 @@ function completedReads(progress, courses) {
   let total= 0;
   courses.forEach(curso =>{
     Object.values(progress[curso].units).forEach(unit =>{
-      let lecturas= Object.value(unit.parts).filter(lectura => lectura.type==="read");
+      let lecturas= Object.values(unit.parts).filter(lectura => lectura.type==="read");
       let onlyReads= lecturas.filter((lectura)=> lectura.completed=== 1)
       total+= onlyReads.length;
     })
   })
   return total;
-}
-
-function percentExcercise(progress, courses) {
-  let total
 }
 
 function totalQuizzes(progress, courses){
@@ -105,7 +102,21 @@ function totalQuizzes(progress, courses){
   })
   return total;
 }
-    
+
+function completeQuizzes(progress, courses){
+  let total= 0;
+  courses.forEach(curso=>{
+    Object.values(progress[curso].units).forEach(unit=>{
+      let quizzes= Object.values(unit.parts).filter(quiz=> quiz.type==="quiz");
+      let onlyQuizzes= quizzes.filter((quiz)=> quiz.completed===1)
+      total+= onlyQuizzes.length;
+    })
+  })
+  return total;
+}
+//Suma de todas las puntuaciones (score) de los quizzes completados.
+function scoreSum (progres, courses){
+}
   
 
 
