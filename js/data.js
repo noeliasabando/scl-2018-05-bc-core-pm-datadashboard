@@ -1,8 +1,19 @@
+/*const users = require('users');
+const dataUsers = users.readFileSync("./data/cohorts/lim-2018-03-pre-core-pw/users.json", "utf8").toString();
+const progress = require('progress');
+const dataProgress = users.readFileSync("./data/cohorts/lim-2018-03-pre-core-pw/progress.json", "utf8").toString();
+*/
+
 const users = new XMLHttpRequest();
 users.open("GET", "./data/cohorts/users.json", true);
+users.send();
 const progress = new XMLHttpRequest();
 users.open("GET", "./data/cohorts/progress.json", true);
+users.send();
 const courses = ["intro"];
+
+console.log(users);
+
 
 window.computeUsersStats = (users, progress, courses) => {
     //debugger
@@ -18,10 +29,10 @@ window.computeUsersStats = (users, progress, courses) => {
                 reads: true,
                 quizzes: true,
             }
-            return user
+            return user;
         }
     )
-    return lista
+    return lista;
 }
 
 function promedioCursos(progress, courses) {
@@ -50,5 +61,5 @@ var richUsersData = window.computeUsersStats(users, progress, courses)
 
 console.log(richUsersData)
 
-
-Object.values(cohorts)
+console.log(contents);
+Object.values(cohorts);

@@ -1,0 +1,135 @@
+/*Estilos generales*/
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: beige;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 100%;
+}
+
+h1 {
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+.container {
+    display: grid;
+    max-width: 100%;
+    margin: 0px auto;
+    height: 100%;
+    background-color: white;
+}
+
+.col-3 {
+    text-align: center;
+    position: inherit;
+}
+
+.col-6 {
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+
+/*Estilos de Elementos*/
+
+.btn {
+    margin: 10px;
+}
+
+.nav {
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+.nav ul {
+    width: 100%;
+}
+
+.nav ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 1.1em;
+}
+
+.nav ul li a:link,
+a:visited {
+    background-color: #FFE521;
+    color: black;
+}
+
+.nav-item {
+    padding-top: 1px;
+}
+
+.search {
+    height: 100px;
+    padding: 20px 10px 20px 10px;
+}
+
+.results {
+    width: 95%;
+    height: 200px;
+    margin: 5px;
+    padding: 10px;
+    background-color: beige;
+}
+
+.rankingbox {
+    width: 31%;
+    height: 80%;
+    float: left;
+    margin: 5px;
+    background-color: white;
+}
+
+.graph {
+    width: 31%;
+    height: 80%;
+    float: left;
+    margin: 5px;
+    background-color: white;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.cohort {
+    width: 95%;
+    float: left;
+    margin: 5px;
+    background-color: white;
+}
+
+.footer {
+    background-color: #FFE521;
+    height: 25px;
+    text-align: center;
+    padding: 5px;
+}
+
+
+/*Etiquetas*/
+
+#logo {
+    height: 50px;
+    float: unset;
+}
+
+
+/*Etiquetas*/
+
+
+/*Media Querys*/
+
+@media screen and (max-width: 320px) {}
