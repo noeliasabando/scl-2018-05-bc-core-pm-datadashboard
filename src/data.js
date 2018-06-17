@@ -32,7 +32,7 @@ window.computeUsersStats = (users, progress, courses) => {
           completed: completeQuizzes(progress[user.id], courses),
           percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100,
           scoreSum: scoreSum(progress[user.id], courses),
-          scoreAvg: (scoreSum(progress[user.id], courses)/ completeQuizzes(progress[user.id], courses)) *100,
+          scoreAvg: (scoreSum(progress[user.id], courses)/ completeQuizzes(progress[user.id], courses)),
         }
       }
       return user
@@ -40,6 +40,8 @@ window.computeUsersStats = (users, progress, courses) => {
   )
   return lista
 }
+
+//1) computeUsersStats(users, progress, courses)
 
 function promedioCursos(progress, courses) {
   let contador = 0;
@@ -140,9 +142,15 @@ function scoreSum(progress, courses) {
   return total
 }
 
+//3) filterUsers(users, search)
+
+window.filterUsers = (users, search) =>{
+  let filterName= users.filter((user)=>user.name.includes(search))
+  return filterName
+}
 
 
-var users = [
+let users = [
   {
     "id": "00hJv4mzvqM3D9kBy3dfxoJyFV82",
     "signupCohort": "lim-2018-03-pre-core-pw",
@@ -159,7 +167,7 @@ var users = [
     "timezone": "America/Lima",
     "role": "student"
   }]
-var progress =
+let progress =
   {
     "00hJv4mzvqM3D9kBy3dfxoJyFV82": {
       "intro": {
@@ -446,9 +454,9 @@ var progress =
       }
     }
   };
-var courses = ["intro"];
+let courses = ["intro"];
 
-var richUsersData = window.computeUsersStats(users, progress, courses)
+let richUsersData = window.computeUsersStats(users, progress, courses)
 
 console.log(richUsersData)
 
