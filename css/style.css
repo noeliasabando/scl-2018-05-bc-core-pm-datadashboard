@@ -12,11 +12,13 @@ body {
     font-style: normal;
     font-weight: 400;
     width: 100%;
+    line-height: 1;
+    font-size: 12px;
 }
 
 h1 {
     font-size: 1.2em;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .container {
@@ -38,11 +40,17 @@ h1 {
     padding-left: 20px;
 }
 
+.col-9 {
+    text-align: left;
+    padding-left: 0px;
+}
+
 
 /*Estilos de Elementos*/
 
 .btn {
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .nav {
@@ -68,17 +76,40 @@ a:visited {
 
 .nav-item {
     padding-top: 1px;
+    text-align: left;
+}
+
+.nav .nav-link {
+    padding-left: 10px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.nav .dropdown {
+    list-style-type: none;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.nav .dropdown-item {
+    background-color: gainsboro;
+    font-size: 1em;
+    font-weight: 400;
 }
 
 .search {
     height: 100px;
     padding: 20px 10px 20px 10px;
+    background-color: #FFE521;
+    margin-top: 1px;
 }
 
 .results {
-    width: 95%;
+    width: 100%;
     height: 200px;
-    margin: 5px;
+    margin-top: 10px;
     padding: 10px;
     background-color: beige;
 }
@@ -126,8 +157,15 @@ a:visited {
     float: unset;
 }
 
+#superior {
+    background-color: #FF009E;
+}
 
-/*Etiquetas*/
+
+/* Arreglo de conflictos de  css con bootstrap*/
+
+
+/*prueba de menu*/
 
 
 /*Media Querys*/

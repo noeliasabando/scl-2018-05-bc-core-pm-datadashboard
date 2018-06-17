@@ -4,11 +4,22 @@ const progress = require('progress');
 const dataProgress = users.readFileSync("./data/cohorts/lim-2018-03-pre-core-pw/progress.json", "utf8").toString();
 */
 
-const users = new XMLHttpRequest();
-users.open("GET", "./data/cohorts/users.json", true);
+function getUsers() {
+    const users = new XMLHttpRequest();
+    users.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const dataUsers = JSON.parse(this.responseText);
+            for (i = 0; i < users.length[i]; i++) {
+
+            }
+        }
+    }
+};
+users.open("GET", "../data/cohorts/users.json", true);
 users.send();
+
 const progress = new XMLHttpRequest();
-users.open("GET", "./data/cohorts/progress.json", true);
+users.open("GET", "../data/cohorts/progress.json", true);
 users.send();
 const courses = ["intro"];
 
