@@ -8,9 +8,6 @@ progress.open("GET", "./data/cohorts/progress.json", true);
 progress.send();
 const courses = ["intro"]; */
 
-console.log(users);
-
-
 window.computeUsersStats = (users, progress, courses) => {
 
   let lista = users.map(
@@ -140,6 +137,15 @@ function scoreSum(progress, courses) {
     })
   })
   return total
+}
+
+/*2) sortUsers(users, orderBy, orderDirection) ORDERBY ordenar por nombre, porcentaje de completitud total(percent),
+porcentaje de ejercicios autocorregidos completados(exercises percente), porcentaje de quizzes completados(quizzes percent), 
+puntuación promedio en quizzes completados(quizzes scoreavg), y porcentaje de lecturas completadas(reads percent).*/
+
+window.sortUsers= (users, orderBy, orderDirection) =>{
+  let orderName= users.filter(user=> user.hasOwnProperty("name")); //no necesita return????? porque no tiene llaves
+    return orderName.sorts();
 }
 
 //3) filterUsers(users, search)
