@@ -42,61 +42,28 @@ h1 {
 
 .col-9 {
     text-align: left;
-    padding-left: 0px;
+    padding-left: 10px;
+    width: 100%;
 }
 
 
-/*Estilos de Elementos*/
+/*Header*/
+
+#superior {
+    background-color: #FF009E;
+}
 
 .btn {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.nav {
-    list-style-type: none;
-    padding-top: 10px;
-}
 
-.nav ul {
-    width: 100%;
-}
+/* Navbar*/
 
-.nav ul li a {
-    display: block;
-    text-decoration: none;
-    padding: 1.1em;
-}
-
-.nav ul li a:link,
-a:visited {
-    background-color: #FFE521;
-    color: black;
-}
-
-.nav-item {
-    padding-top: 1px;
-    text-align: left;
-}
-
-.nav .nav-link {
-    padding-left: 10px;
-    text-transform: uppercase;
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-.nav .dropdown {
-    list-style-type: none;
-    text-transform: uppercase;
-    font-size: 1.2em;
-    font-weight: 600;
-}
-
-.nav .dropdown-item {
-    background-color: gainsboro;
-    font-size: 1em;
-    font-weight: 400;
+#logo {
+    height: 50px;
+    float: unset;
 }
 
 .search {
@@ -105,6 +72,59 @@ a:visited {
     background-color: #FFE521;
     margin-top: 1px;
 }
+
+#sidebar {
+    /* don't forget to add all the previously mentioned styles here too */
+    background: white;
+    color: black;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: white;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: black;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color: black;
+    background-color: #FFE521;
+    text-align: left;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#sidebar ul li a:hover {
+    color: black;
+    background: gainsboro;
+    text-decoration: none;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: black;
+    background: #FFE521;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: gainsboro;
+}
+
+
+/*Contenido*/
 
 .results {
     width: 100%;
@@ -135,7 +155,7 @@ a:visited {
     margin-bottom: 5px;
 }
 
-.cohort {
+#cohort {
     width: 95%;
     float: left;
     margin: 5px;
@@ -152,15 +172,6 @@ a:visited {
 
 /*Etiquetas*/
 
-#logo {
-    height: 50px;
-    float: unset;
-}
-
-#superior {
-    background-color: #FF009E;
-}
-
 
 /* Arreglo de conflictos de  css con bootstrap*/
 
@@ -171,3 +182,12 @@ a:visited {
 /*Media Querys*/
 
 @media screen and (max-width: 320px) {}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}
