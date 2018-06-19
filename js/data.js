@@ -1,11 +1,10 @@
-users =
-    progress =
-    cohort =
+const users = [];
+const progress = [];
+const courses = [];
 
-    fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
-    .then(response => response.json())
+fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(json => {
-        console.log(json); // => la data!!
+        let users = JSON.stringify(json); // => la data!!
     })
     .catch((err) => {
         console.error(err);
@@ -13,19 +12,17 @@ users =
 
 
 fetch("../../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
-    .then(response => response.json())
     .then(json => {
-        console.log(json); // => la data!!
+        let progress = JSON.stringify(json); // => la data!!
     })
     .catch((err) => {
         console.error(err);
     });
 
 
-fetch("../../data/cohorts/cohort.json")
-    .then(response => response.json())
+fetch("../../data/cohorts/cohorts.json")
     .then(json => {
-        console.log(json); // => la data!!
+        let courses = JSON.stringify(json.coursesIndex);
     })
     .catch((err) => {
         console.error(err);
