@@ -4,33 +4,38 @@ let courses = [];
 
 fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
   .then(response => response.json())
+  .then(data => {
+    users = data;
+    computeUsersStats(users, progress, courses)
+  })
   .catch((err) => {
     console.error(err);
-  })
-  .then(data => {
-    users = data
   })
 
 fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
   .then(response => response.json())
-  .catch((err)=>{
-    console.error(err);
+  .then(data => {
+    progress = data;
+    computeUsersStats(users, progress, courses)
   })
-  .then(data =>{
-    progress =  data
+  .catch((err) => {
+    console.error(err);
   })
 
 fetch("../data/cohorts.json")
-.then(response => response.json())
-.catch((err)=>{
-  console.error(err);
-})
-.then(data =>{
-  courses =  data
-})
+  .then(response => response.json())
+  .then(data => {
+    courses = data.map(
+      function (cohort) {
+        return cohort.coursesIndex;       
+      });
+  computeUsersStats(users, progress, courses)
+  })
+  .catch((err) => {
+    console.error(err);
+  })
 
 window.computeUsersStats = (users, progress, courses) => {
-
   let lista = users.map(
     (user) => {
       user.stats = {
@@ -189,49 +194,49 @@ window.sortUsers = (users, orderBy, orderDirection) => {
   }
   let comparePercentDesc = (user1, user2) => -comparePercent(user1, user2);
 
-  let compareExercisesPercent= (user1, user2)=>{
-    if(user1.stats.exercises.percent < user2.stats.exercises.percent){
+  let compareExercisesPercent = (user1, user2) => {
+    if (user1.stats.exercises.percent < user2.stats.exercises.percent) {
       return -1
     }
-    if(user1.stats.exercises.percent > user2.stats.exercises.percent){
+    if (user1.stats.exercises.percent > user2.stats.exercises.percent) {
       return 1
     }
     else return 0
   }
-  let compareExercisesPercentDesc= (user1, user2)=> -compareExercisesPercent(user1, user2);
+  let compareExercisesPercentDesc = (user1, user2) => -compareExercisesPercent(user1, user2);
 
-  let compareQuizzesPercent= (user1, user2)=>{
-    if(user1.stats.quizzes.percent < user1.stats.quizzes.percent){
+  let compareQuizzesPercent = (user1, user2) => {
+    if (user1.stats.quizzes.percent < user1.stats.quizzes.percent) {
       return -1
     }
-    if(user2.stats.quizzes.percent > user2.stats.quizzes.percent){
+    if (user2.stats.quizzes.percent > user2.stats.quizzes.percent) {
       return 1
     }
     else return 0
   }
-  let compareQuizzesPercentDesc= (user1, user2)=> -compareQuizzesPercent(user1, user2);
+  let compareQuizzesPercentDesc = (user1, user2) => -compareQuizzesPercent(user1, user2);
 
-  let compareQuizzesScoreAvg= (user1, user2)=>{
-    if(user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg){
+  let compareQuizzesScoreAvg = (user1, user2) => {
+    if (user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg) {
       return -1
     }
-    if(user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg){
+    if (user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg) {
       return 1
     }
     else return 0
   }
-  let compareQuizzesScoreAvgDesc= (user1, user2)=> -compareQuizzesScoreAvg(user1, user2);
+  let compareQuizzesScoreAvgDesc = (user1, user2) => -compareQuizzesScoreAvg(user1, user2);
 
-  let compareReadsPercent= (user1, user2)=>{
-    if(user1.stats.reads.percent < user2.stats.reads.percent){
+  let compareReadsPercent = (user1, user2) => {
+    if (user1.stats.reads.percent < user2.stats.reads.percent) {
       return -1
     }
-    if(user1.stats.reads.percent > user2.stats.reads.percent){
+    if (user1.stats.reads.percent > user2.stats.reads.percent) {
       return 1
     }
     else return 0
   }
-  let compareReadsPercentDesc= (user1, user2)=> -compareReadsPercent(user1, user2);
+  let compareReadsPercentDesc = (user1, user2) => -compareReadsPercent(user1, user2);
 
 
   if (orderBy === "name") {
@@ -246,26 +251,26 @@ window.sortUsers = (users, orderBy, orderDirection) => {
     }
     else users.sort(comparePercentDesc)
   }
-  if(orderBy==="exercises percent"){
-    if(orderDirection==="ASC"){
+  if (orderBy === "exercises percent") {
+    if (orderDirection === "ASC") {
       users.sort(compareExercisesPercent)
     }
     else user.sort(compareExercisesPercentDesc)
   }
-  if(orderBy==="quizzes percent"){
-    if(orderDirection==="ASC"){
+  if (orderBy === "quizzes percent") {
+    if (orderDirection === "ASC") {
       users.sort(compareQuizzesPercent)
     }
     else users.sort(compareQuizzesPercentDesc)
   }
-  if(orderBy==="quizzes scoreAvg"){
-    if(orderDirection==="ASC"){
+  if (orderBy === "quizzes scoreAvg") {
+    if (orderDirection === "ASC") {
       users.sort(compareQuizzesScoreAvg)
     }
     else users.sort(compareQuizzesScoreAvgDesc)
   }
-  if(orderBy==="reads percent"){
-    if(orderDirection==="ASC"){
+  if (orderBy === "reads percent") {
+    if (orderDirection === "ASC") {
       users.sort(compareReadsPercent)
     }
     else users.sort(compareReadsPercentDesc)
