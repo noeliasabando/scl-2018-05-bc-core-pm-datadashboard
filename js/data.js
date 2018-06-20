@@ -2,63 +2,61 @@ let users = [];
 let progress = [];
 let courses = [];
 
-fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
+fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
-    .then(json => {
-        users = JSON.stringify(json); // => la data!!
-    })
     .catch((err) => {
         console.error(err);
-    });
-
-
-fetch("../../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
-    .then(response => response.json())
-    .then(json => {
-        progress = JSON.stringify(json); // => la data!!
     })
+    .then(data => {
+        users = data
+    })
+
+fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
+    .then(response => response.json())
     .catch((err) => {
         console.error(err);
-    });
-
-fetch("../../data/cohorts.json")
-    .then(response => response.json())
-    .then(json => {
-        courses = JSON.stringify(json.coursesIndex);
     })
+    .then(data => {
+        progress = data
+    })
+
+fetch("../data/cohorts.json")
+    .then(response => response.json())
     .catch((err) => {
         console.error(err);
-    });
+    })
+    .then(data => {
+        courses = data
+    })
 
 window.computeUsersStats = (users, progress, courses) => {
 
     let lista = users.map(
-            (user) => {
-                user.stats = {
-                    percent: promedioCursos(progress[user.id], courses),
-                    exercises: {
-                        total: totalExcercises(progress[user.id], courses),
-                        completed: completeExcercise(progress[user.id], courses),
-                        percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, //puedo parsear una funcion?????
-                    },
-                    reads: {
-                        total: totalReads(progress[user.id], courses),
-                        completed: completedReads(progress[user.id], courses),
-                        percent: (completedReads(progress[user.id], courses) / totalReads(progress[user.id], courses)) * 100,
-                    },
-                    quizzes: {
-                        total: totalQuizzes(progress[user.id], courses),
-                        completed: completeQuizzes(progress[user.id], courses),
-                        percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100,
-                        scoreSum: scoreSum(progress[user.id], courses),
-                        scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
-                    }
+        (user) => {
+            user.stats = {
+                percent: promedioCursos(progress[user.id], courses),
+                exercises: {
+                    total: totalExcercises(progress[user.id], courses),
+                    completed: completeExcercise(progress[user.id], courses),
+                    percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, //puedo parsear una funcion?????
+                },
+                reads: {
+                    total: totalReads(progress[user.id], courses),
+                    completed: completedReads(progress[user.id], courses),
+                    percent: (completedReads(progress[user.id], courses) / totalReads(progress[user.id], courses)) * 100,
+                },
+                quizzes: {
+                    total: totalQuizzes(progress[user.id], courses),
+                    completed: completeQuizzes(progress[user.id], courses),
+                    percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100,
+                    scoreSum: scoreSum(progress[user.id], courses),
+                    scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
                 }
-                return user;
             }
-        )
-        //return lista;
-    console.log(lista);
+            return user
+        }
+    )
+    return lista
 }
 
 //1) computeUsersStats(users, progress, courses)
@@ -70,7 +68,8 @@ function promedioCursos(progress, courses) {
     });
     return contador / courses.length;
 }
-//funciones ejercicios, total por curso, completados por alumna y FALTA porcentaje de completados por alumna
+
+//funciones ejercicios, total por curso, completados por alumna 
 function totalExcercises(progress, courses) {
     let total = 0;
     courses.forEach(curso => {
@@ -148,6 +147,7 @@ function completeQuizzes(progress, courses) {
     })
     return total;
 }
+
 //Suma de todas las puntuaciones (score) de los quizzes completados.
 function scoreSum(progress, courses) {
     let total = 0;
@@ -160,4 +160,111 @@ function scoreSum(progress, courses) {
         })
     })
     return total
+}
+
+/*2) sortUsers(users, orderBy, orderDirection) ORDERBY ordenar por nombre, porcentaje de completitud total(percent),
+porcentaje de ejercicios autocorregidos completados(exercises percente), porcentaje de quizzes completados(quizzes percent), 
+puntuación promedio en quizzes completados(quizzes scoreavg), y porcentaje de lecturas completadas(reads percent).*/
+
+window.sortUsers = (users, orderBy, orderDirection) => {
+    let compareNames = (user1, user2) => {
+        if (user1.name < user2.name) {
+            return -1
+        }
+        if (user1.name > user2.name) {
+            return 1
+        } else return 0
+    }
+    let compareNamesDesc = (user1, user2) => -compareNames(user1, user2);
+
+    let comparePercent = (user1, user2) => {
+        if (user1.stats.percent < user2.stats.percent) {
+            return -1
+        }
+        if (user1.stats.percent > user2.stats.percent) {
+            return 1
+        } else return 0
+    }
+    let comparePercentDesc = (user1, user2) => -comparePercent(user1, user2);
+
+    let compareExercisesPercent = (user1, user2) => {
+        if (user1.stats.exercises.percent < user2.stats.exercises.percent) {
+            return -1
+        }
+        if (user1.stats.exercises.percent > user2.stats.exercises.percent) {
+            return 1
+        } else return 0
+    }
+    let compareExercisesPercentDesc = (user1, user2) => -compareExercisesPercent(user1, user2);
+
+    let compareQuizzesPercent = (user1, user2) => {
+        if (user1.stats.quizzes.percent < user1.stats.quizzes.percent) {
+            return -1
+        }
+        if (user2.stats.quizzes.percent > user2.stats.quizzes.percent) {
+            return 1
+        } else return 0
+    }
+    let compareQuizzesPercentDesc = (user1, user2) => -compareQuizzesPercent(user1, user2);
+
+    let compareQuizzesScoreAvg = (user1, user2) => {
+        if (user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg) {
+            return -1
+        }
+        if (user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg) {
+            return 1
+        } else return 0
+    }
+    let compareQuizzesScoreAvgDesc = (user1, user2) => -compareQuizzesScoreAvg(user1, user2);
+
+    let compareReadsPercent = (user1, user2) => {
+        if (user1.stats.reads.percent < user2.stats.reads.percent) {
+            return -1
+        }
+        if (user1.stats.reads.percent > user2.stats.reads.percent) {
+            return 1
+        } else return 0
+    }
+    let compareReadsPercentDesc = (user1, user2) => -compareReadsPercent(user1, user2);
+
+
+    if (orderBy === "name") {
+        if (orderDirection === "ASC") {
+            users.sort(compareNames)
+        } else users.sort(compareNamesDesc)
+    }
+    if (orderBy === "percent") {
+        if (orderDirection === "ASC") {
+            users.sort(comparePercent)
+        } else users.sort(comparePercentDesc)
+    }
+    if (orderBy === "exercises percent") {
+        if (orderDirection === "ASC") {
+            users.sort(compareExercisesPercent)
+        } else user.sort(compareExercisesPercentDesc)
+    }
+    if (orderBy === "quizzes percent") {
+        if (orderDirection === "ASC") {
+            users.sort(compareQuizzesPercent)
+        } else users.sort(compareQuizzesPercentDesc)
+    }
+    if (orderBy === "quizzes scoreAvg") {
+        if (orderDirection === "ASC") {
+            users.sort(compareQuizzesScoreAvg)
+        } else users.sort(compareQuizzesScoreAvgDesc)
+    }
+    if (orderBy === "reads percent") {
+        if (orderDirection === "ASC") {
+            users.sort(compareReadsPercent)
+        } else users.sort(compareReadsPercentDesc)
+    }
+    return users
+}
+
+
+//3) filterUsers(users, search)
+
+window.filterUsers = (users, search) => {
+    let filterName = users.filter((user) => user.name.includes(search))
+    return filterName
 }
