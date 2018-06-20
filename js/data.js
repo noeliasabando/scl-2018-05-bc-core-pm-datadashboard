@@ -1,33 +1,37 @@
 let users = [];
-let progress = [];
+let progress = {};
 let courses = [];
 
 fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
+    .then(data => {
+        users = data;
+    })
     .catch((err) => {
         console.error(err);
-    })
-    .then(data => {
-        users = data
     })
 
 fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
     .then(response => response.json())
+    .then(data => {
+        progress = data;
+    })
     .catch((err) => {
         console.error(err);
-    })
-    .then(data => {
-        progress = data
     })
 
 fetch("../data/cohorts.json")
     .then(response => response.json())
+    .then(data => {
+        courses = data.map(
+            function(cohort) {
+                return cohort.coursesIndex;
+            });
+    })
     .catch((err) => {
         console.error(err);
     })
-    .then(data => {
-        courses = data
-    })
+
 
 window.computeUsersStats = (users, progress, courses) => {
 
@@ -53,10 +57,10 @@ window.computeUsersStats = (users, progress, courses) => {
                     scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
                 }
             }
-            return user
+            return user;
         }
     )
-    return lista
+    return lista;
 }
 
 //1) computeUsersStats(users, progress, courses)
