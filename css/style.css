@@ -169,6 +169,19 @@ ul ul a {
     padding: 5px;
 }
 
+.selector {
+    height: 90px;
+    padding: 5px;
+    width: 150px;
+}
+
+.studentlist {
+    height: 500px;
+    padding: 15px;
+    background-color: beige;
+    margin: 15px;
+}
+
 
 /*Etiquetas*/
 
