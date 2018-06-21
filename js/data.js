@@ -51,7 +51,7 @@ window.computeUsersStats = (users, progress, courses) => {
                 exercises: {
                     total: totalExcercises(progress[user.id], courses),
                     completed: completeExcercise(progress[user.id], courses),
-                    percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, //puedo parsear una funcion?????
+                    percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, 
                 },
                 reads: {
                     total: totalReads(progress[user.id], courses),
