@@ -1,11 +1,12 @@
 let users = [];
-let progress = {};
+let progress = [];
 let courses = [];
 
 fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
         users = data;
+        return users;
     })
     .catch((err) => {
         console.error(err);
@@ -15,10 +16,11 @@ fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
     .then(response => response.json())
     .then(data => {
         progress = data;
-    })
-    .catch((err) => {
+        return progress;
+    }).catch((err) => {
         console.error(err);
     })
+
 
 fetch("../data/cohorts.json")
     .then(response => response.json())
@@ -27,17 +29,14 @@ fetch("../data/cohorts.json")
             function(cohort) {
                 return cohort.coursesIndex;
             });
-    })
-    .catch((err) => {
+    }).catch((err) => {
         console.error(err);
     })
 
-
-window.computeUsersStats = (users, progress, courses) => {
-
+function computeUsersStats(users, progress, courses) {
     let lista = users.map(
-        (user) => {
-            user.stats = {
+        function(user) {
+            users.stats = {
                 percent: promedioCursos(progress[user.id], courses),
                 exercises: {
                     total: totalExcercises(progress[user.id], courses),
@@ -57,11 +56,14 @@ window.computeUsersStats = (users, progress, courses) => {
                     scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
                 }
             }
-            return user;
+            return lista;
         }
     )
-    return lista;
 }
+
+
+
+
 
 //1) computeUsersStats(users, progress, courses)
 
@@ -163,7 +165,7 @@ function scoreSum(progress, courses) {
             })
         })
     })
-    return total
+    return total;
 }
 
 /*2) sortUsers(users, orderBy, orderDirection) ORDERBY ordenar por nombre, porcentaje de completitud total(percent),
@@ -276,7 +278,7 @@ window.filterUsers = (users, search) => {
 //4)processCohortData(options)
 
 window.processCohortData = (options) => {
-        let options = courses.map(
+        options = courses.map(
             function(cohort) {
                 return cohort;
             });
