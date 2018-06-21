@@ -302,3 +302,28 @@ window.filterUsers = (users, search) => {
     let filterName = users.filter((user) => user.name.includes(search))
     return filterName
 }
+
+//4)processCohortData(options)
+
+window.processCohortData = (options) => {
+        let options = courses.map(
+            function(cohort) {
+                return cohort;
+            });
+
+    }
+    /*Esta función es la que deberíamos estar al seleccionar un cohort y cada vez que el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta función debe invocar internamente a computeUsersStats(), sortUsers() y filterUsers().
+    Argumentos
+
+    options: An object with the following keys:
+        cohort: Objeto cohort (de la lista de cohorts)
+        cohortData: Objeto con dos propiedades:
+            users: Arreglo de usuarios miembros del cohort.
+            progress: Objeto con data de progreso de cada usuario en el contexto de un cohort en particular.
+        orderBy: String con criterio de ordenado (ver sortUsers).
+        orderDirection: String con dirección de ordenado (ver sortUsers).
+        search: String de búsqueda (ver filterUsers)
+
+    Valor de retorno
+
+    Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida (ver computeUsersStats).*/
