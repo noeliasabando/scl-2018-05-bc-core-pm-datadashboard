@@ -1,68 +1,60 @@
 let users = [];
-let progress = [];
+let progress = {};
 let courses = [];
 
-fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
+fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json", { method: 'get' })
     .then(response => response.json())
     .then(data => {
         users = data;
         return users;
     })
-    .catch((err) => {
-        console.error(err);
-    })
-
-fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
-    .then(response => response.json())
-    .then(data => {
-        progress = data;
-        return progress;
-    }).catch((err) => {
-        console.error(err);
-    })
-
-
-fetch("../data/cohorts.json")
-    .then(response => response.json())
-    .then(data => {
-        courses = data.map(
-            function(cohort) {
-                return cohort.coursesIndex;
-            });
-    }).catch((err) => {
-        console.error(err);
-    })
-
-function computeUsersStats(users, progress, courses) {
-    let lista = users.map(
-        function(user) {
-            users.stats = {
-                percent: promedioCursos(progress[user.id], courses),
-                exercises: {
-                    total: totalExcercises(progress[user.id], courses),
-                    completed: completeExcercise(progress[user.id], courses),
-                    percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, //puedo parsear una funcion?????
-                },
-                reads: {
-                    total: totalReads(progress[user.id], courses),
-                    completed: completedReads(progress[user.id], courses),
-                    percent: (completedReads(progress[user.id], courses) / totalReads(progress[user.id], courses)) * 100,
-                },
-                quizzes: {
-                    total: totalQuizzes(progress[user.id], courses),
-                    completed: completeQuizzes(progress[user.id], courses),
-                    percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100,
-                    scoreSum: scoreSum(progress[user.id], courses),
-                    scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
+    .then(
+        fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json", { method: 'get' })
+        .then(response => response.json())
+        .then(data => {
+            progress = data;
+            return progress;
+        }))
+    .then(
+        fetch("../data/cohorts.json", { method: 'get' })
+        .then(response => response.json())
+        .then(data => {
+            courses = data.map(
+                function(cohort) {
+                    return cohort.coursesIndex;
+                })
+        }))
+    .then(
+        function computeUsersStats(users, progress, courses) {
+            lista = this.map(
+                function(user) {
+                    user.stats = {
+                        percent: promedioCursos(progress[user.id], courses),
+                        exercises: {
+                            total: totalExcercises(progress[user.id], courses),
+                            completed: completeExcercise(progress[user.id], courses),
+                            percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, //puedo parsear una funcion?????
+                        },
+                        reads: {
+                            total: totalReads(progress[user.id], courses),
+                            completed: completedReads(progress[user.id], courses),
+                            percent: (completedReads(progress[user.id], courses) / totalReads(progress[user.id], courses)) * 100,
+                        },
+                        quizzes: {
+                            total: totalQuizzes(progress[user.id], courses),
+                            completed: completeQuizzes(progress[user.id], courses),
+                            percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100,
+                            scoreSum: scoreSum(progress[user.id], courses),
+                            scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
+                        }
+                    }
+                    return lista;
                 }
-            }
-            return lista;
+            )
         }
-    )
-}
-
-
-
+    ).catch((err) => {
+        console.error(err);
+    })
 
 
 //1) computeUsersStats(users, progress, courses)
