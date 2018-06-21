@@ -1,11 +1,13 @@
 let users = [];
 let progress = {};
-let courses = [];
+let courses = {};
+let cohortUsers= [];
 
 fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
         users = data;
+        cohortUsers= users.filter(user => user.signupCohort === "lim-2018-03-pre-core-pw");
     })
     .catch((err) => {
         console.error(err);
@@ -23,20 +25,27 @@ fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
 fetch("../data/cohorts.json")
     .then(response => response.json())
     .then(data => {
-        courses = data.map(
+        data.forEach(
             function(cohort) {
-                return cohort.coursesIndex;
+                if(!cohort.coursesIndex){
+                    courses[cohort.id]= []
+                }
+                else courses[cohort.id]= Object.keys(cohort.coursesIndex);
             });
     })
     .catch((err) => {
         console.error(err);
     })
 
-
 window.computeUsersStats = (users, progress, courses) => {
 
     let lista = users.map(
         (user) => {
+            if(Object.keys(progress[user.id]).length === 0){
+                console.log("progreso vacío")
+                return user
+            }
+
             user.stats = {
                 percent: promedioCursos(progress[user.id], courses),
                 exercises: {
@@ -246,31 +255,6 @@ window.sortUsers = (users, orderBy, orderDirection) => {
             users.sort(comparePercent)
         } else users.sort(comparePercentDesc)
     }
-<<<<<<< HEAD
-    else users.sort(comparePercentDesc)
-  }
-  if (orderBy === "exercises percent") {
-    if (orderDirection === "ASC") {
-      users.sort(compareExercisesPercent)
-    }
-    else user.sort(compareExercisesPercentDesc)
-  }
-  if (orderBy === "quizzes percent") {
-    if (orderDirection === "ASC") {
-      users.sort(compareQuizzesPercent)
-    }
-    else users.sort(compareQuizzesPercentDesc)
-  }
-  if (orderBy === "quizzes scoreAvg") {
-    if (orderDirection === "ASC") {
-      users.sort(compareQuizzesScoreAvg)
-    }
-    else users.sort(compareQuizzesScoreAvgDesc)
-  }
-  if (orderBy === "reads percent") {
-    if (orderDirection === "ASC") {
-      users.sort(compareReadsPercent)
-=======
     if (orderBy === "exercises percent") {
         if (orderDirection === "ASC") {
             users.sort(compareExercisesPercent)
@@ -290,7 +274,6 @@ window.sortUsers = (users, orderBy, orderDirection) => {
         if (orderDirection === "ASC") {
             users.sort(compareReadsPercent)
         } else users.sort(compareReadsPercentDesc)
->>>>>>> bbc556e17922a3b71bfca5a3969d3020564498f4
     }
     return users
 }
