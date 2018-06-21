@@ -1,22 +1,26 @@
-let users;
-let progress;
-let courses;
+//llamando data
+const usersJson = "../../data/cohorts/lim-2018-03-pre-core-pw/users.json";
+const progressJson = "../../data/cohorts/lim-2018-03-pre-core-pw/progress.json";
+const cohortsJson = "../../data/cohorts.json";
+let users = [];
+let progress = {};
+let courses = [];
 
-fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
+fetch(usersJson)
     .then(response => response.json())
     .then(data => {
         users = data;
         return users;
     })
     .then(
-        fetch("../../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
+        fetch(progressJson)
         .then(response => response.json())
         .then(data => {
             progress = data;
             return progress;
         }))
     .then(
-        fetch("../../data/cohorts.json")
+        fetch(cohortsJson)
         .then(response => response.json())
         .then(data => {
             courses = data.map(
@@ -53,17 +57,10 @@ fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
             )
         }
     )
-    .catch((err) => {
-        console.error(err);
-    })
 
-
-
-
-
-
-
-
+.catch((err) => {
+    console.error(err);
+})
 
 
 //1) computeUsersStats(users, progress, courses)
@@ -75,6 +72,7 @@ function promedioCursos(progress, courses) {
     });
     return contador / courses.length;
 }
+
 
 //funciones ejercicios, total por curso, completados por alumna 
 function totalExcercises(progress, courses) {
@@ -176,61 +174,61 @@ puntuación promedio en quizzes completados(quizzes scoreavg), y porcentaje de l
 window.sortUsers = (users, orderBy, orderDirection) => {
     let compareNames = (user1, user2) => {
         if (user1.name < user2.name) {
-            return -1
+            return -1;
         }
         if (user1.name > user2.name) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareNamesDesc = (user1, user2) => -compareNames(user1, user2);
 
     let comparePercent = (user1, user2) => {
         if (user1.stats.percent < user2.stats.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.percent > user2.stats.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let comparePercentDesc = (user1, user2) => -comparePercent(user1, user2);
 
     let compareExercisesPercent = (user1, user2) => {
         if (user1.stats.exercises.percent < user2.stats.exercises.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.exercises.percent > user2.stats.exercises.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareExercisesPercentDesc = (user1, user2) => -compareExercisesPercent(user1, user2);
 
     let compareQuizzesPercent = (user1, user2) => {
         if (user1.stats.quizzes.percent < user1.stats.quizzes.percent) {
-            return -1
+            return -1;
         }
         if (user2.stats.quizzes.percent > user2.stats.quizzes.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareQuizzesPercentDesc = (user1, user2) => -compareQuizzesPercent(user1, user2);
 
     let compareQuizzesScoreAvg = (user1, user2) => {
         if (user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg) {
-            return -1
+            return -1;
         }
         if (user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg) {
             return 1
-        } else return 0
+        } else return 0;
     }
     let compareQuizzesScoreAvgDesc = (user1, user2) => -compareQuizzesScoreAvg(user1, user2);
 
     let compareReadsPercent = (user1, user2) => {
         if (user1.stats.reads.percent < user2.stats.reads.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.reads.percent > user2.stats.reads.percent) {
             return 1
-        } else return 0
+        } else return 0;
     }
     let compareReadsPercentDesc = (user1, user2) => -compareReadsPercent(user1, user2);
 
@@ -265,7 +263,7 @@ window.sortUsers = (users, orderBy, orderDirection) => {
             users.sort(compareReadsPercent)
         } else users.sort(compareReadsPercentDesc)
     }
-    return users
+    return users;
 }
 
 
@@ -273,30 +271,42 @@ window.sortUsers = (users, orderBy, orderDirection) => {
 
 window.filterUsers = (users, search) => {
     let filterName = users.filter((user) => user.name.includes(search))
-    return filterName
+    return filterName;
 }
 
 //4)processCohortData(options)
 
-window.processCohortData = (options) => {
-        options = courses.map(
-            function(cohort) {
-                return cohort;
-            });
+/*window.processCohortData = (options) => {
+    options = courses.map(
+        function(cohort) {
+            cohort.stats = {
+                cohortData: {
+                    users: ,
+                    progress,
+                },
+                orderBy: ,
+                orderDirection: ,
+                search: ,
+            },
+        }
+        return options;
+    });*/
 
-    }
-    /*Esta función es la que deberíamos estar al seleccionar un cohort y cada vez que el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta función debe invocar internamente a computeUsersStats(), sortUsers() y filterUsers().
-    Argumentos
 
-    options: An object with the following keys:
-        cohort: Objeto cohort (de la lista de cohorts)
-        cohortData: Objeto con dos propiedades:
-            users: Arreglo de usuarios miembros del cohort.
-            progress: Objeto con data de progreso de cada usuario en el contexto de un cohort en particular.
-        orderBy: String con criterio de ordenado (ver sortUsers).
-        orderDirection: String con dirección de ordenado (ver sortUsers).
-        search: String de búsqueda (ver filterUsers)
 
-    Valor de retorno
 
-    Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida (ver computeUsersStats).*/
+/*Esta función es la que deberíamos estar al seleccionar un cohort y cada vez que el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta función debe invocar internamente a computeUsersStats(), sortUsers() y filterUsers().
+Argumentos
+
+options: An object with the following keys:
+    cohort: Objeto cohort (de la lista de cohorts)
+    cohortData: Objeto con dos propiedades:
+        users: Arreglo de usuarios miembros del cohort.
+        progress: Objeto con data de progreso de cadach usuario en el contexto de un cohort en particular.
+    orderBy: String con criterio de ordenado (ver sortUsers).
+    orderDirection: String con dirección de ordenado (ver sortUsers).
+    search: String de búsqueda (ver filterUsers)
+
+Valor de retorno
+
+Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida (ver computeUsersStats).*/
