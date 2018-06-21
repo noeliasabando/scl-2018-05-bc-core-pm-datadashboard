@@ -1,22 +1,22 @@
-let users = [];
-let progress = {};
-let courses = [];
+let users;
+let progress;
+let courses;
 
-fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json", { method: 'get' })
+fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
         users = data;
         return users;
     })
     .then(
-        fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json", { method: 'get' })
+        fetch("../../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
         .then(response => response.json())
         .then(data => {
             progress = data;
             return progress;
         }))
     .then(
-        fetch("../data/cohorts.json", { method: 'get' })
+        fetch("../../data/cohorts.json")
         .then(response => response.json())
         .then(data => {
             courses = data.map(
@@ -26,7 +26,7 @@ fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json", { method: 'get' })
         }))
     .then(
         function computeUsersStats(users, progress, courses) {
-            lista = this.map(
+            lista = users.map(
                 function(user) {
                     user.stats = {
                         percent: promedioCursos(progress[user.id], courses),
@@ -52,9 +52,18 @@ fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json", { method: 'get' })
                 }
             )
         }
-    ).catch((err) => {
+    )
+    .catch((err) => {
         console.error(err);
     })
+
+
+
+
+
+
+
+
 
 
 //1) computeUsersStats(users, progress, courses)
