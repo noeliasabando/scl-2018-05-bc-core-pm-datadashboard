@@ -170,7 +170,7 @@ ul ul a {
 }
 
 .selector {
-    height: 90px;
+    height: 120px;
     padding: 5px;
     width: 150px;
 }
@@ -180,6 +180,14 @@ ul ul a {
     padding: 15px;
     background-color: beige;
     margin: 15px;
+}
+
+.btn-cont {
+    background-color: #FF009E;
+    color: black;
+    padding: 10px;
+    border: none;
+    margin-top: 15px;
 }
 
 

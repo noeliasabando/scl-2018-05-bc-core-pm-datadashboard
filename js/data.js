@@ -1,47 +1,53 @@
-let users = [];
-let progress = {};
-let courses = {};
-let cohortUsers= [];
+// Raw Data
+let usersData = [];
+let progressData = {};
+let coursesData = {};
 
-fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
+let cohortUsers = [];
+let userStats = [];
+
+let loadUserJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
-        users = data;
-        cohortUsers= users.filter(user => user.signupCohort === "lim-2018-03-pre-core-pw");
+        usersData = data;
+        cohortUsers = usersData.filter(user => user.signupCohort === "lim-2018-03-pre-core-pw");
     })
     .catch((err) => {
         console.error(err);
     })
 
-fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
+let loadProgressJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
     .then(response => response.json())
     .then(data => {
-        progress = data;
+        progressData = data;
     })
     .catch((err) => {
         console.error(err);
     })
 
-fetch("../data/cohorts.json")
+let loadCohortsJson = fetch("../data/cohorts.json")
     .then(response => response.json())
     .then(data => {
         data.forEach(
             function(cohort) {
-                if(!cohort.coursesIndex){
-                    courses[cohort.id]= []
-                }
-                else courses[cohort.id]= Object.keys(cohort.coursesIndex);
+                if (!cohort.coursesIndex) {
+                    coursesData[cohort.id] = []
+                } else coursesData[cohort.id] = Object.keys(cohort.coursesIndex);
             });
     })
     .catch((err) => {
         console.error(err);
     })
 
+Promise.all([loadUserJson, loadProgressJson, loadCohortsJson]).then((values)=>{
+    userStats = window.computeUsersStats(usersData, progressData, coursesData["lim-2018-03-pre-core-pw"])
+})
+
 window.computeUsersStats = (users, progress, courses) => {
 
     let lista = users.map(
         (user) => {
-            if(Object.keys(progress[user.id]).length === 0){
+            if (Object.keys(progress[user.id]).length === 0) {
                 console.log("progreso vacío")
                 return user
             }
@@ -51,25 +57,25 @@ window.computeUsersStats = (users, progress, courses) => {
                 exercises: {
                     total: totalExcercises(progress[user.id], courses),
                     completed: completeExcercise(progress[user.id], courses),
-                    percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100, 
+                    percent: (completeExcercise(progress[user.id], courses) / totalExcercises(progress[user.id], courses)) * 100 || 0, //puedo parsear una funcion?????
                 },
                 reads: {
                     total: totalReads(progress[user.id], courses),
                     completed: completedReads(progress[user.id], courses),
-                    percent: (completedReads(progress[user.id], courses) / totalReads(progress[user.id], courses)) * 100,
+                    percent: (completedReads(progress[user.id], courses) / totalReads(progress[user.id], courses)) * 100 || 0,
                 },
                 quizzes: {
                     total: totalQuizzes(progress[user.id], courses),
                     completed: completeQuizzes(progress[user.id], courses),
-                    percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100,
+                    percent: (completeQuizzes(progress[user.id], courses) / totalQuizzes(progress[user.id], courses)) * 100 || 0,
                     scoreSum: scoreSum(progress[user.id], courses),
-                    scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)),
+                    scoreAvg: (scoreSum(progress[user.id], courses) / completeQuizzes(progress[user.id], courses)) || 0,
                 }
             }
             return user;
         }
     )
-    return lista;
+    return lista.filter((user)=>user.hasOwnProperty("stats"));
 }
 
 //1) computeUsersStats(users, progress, courses)
@@ -104,7 +110,7 @@ function completeExcercise(progress, courses) {
             partes.forEach((parte) => {
                 let completeExercices = Object.values(parte.exercises).filter(
                     (exercise) => {
-                        return exercise.completado === 1;
+                        return exercise.completed === 1;
                     })
                 total += completeExercices.length;
             })
@@ -200,49 +206,45 @@ window.sortUsers = (users, orderBy, orderDirection) => {
     }
     let comparePercentDesc = (user1, user2) => -comparePercent(user1, user2);
 
-  let compareExercisesPercent = (user1, user2) => {
-    if (user1.stats.exercises.percent < user2.stats.exercises.percent) {
-      return -1
+    let compareExercisesPercent = (user1, user2) => {
+        if (user1.stats.exercises.percent < user2.stats.exercises.percent) {
+            return -1
+        }
+        if (user1.stats.exercises.percent > user2.stats.exercises.percent) {
+            return 1
+        } else return 0
     }
-    if (user1.stats.exercises.percent > user2.stats.exercises.percent) {
-      return 1
-    }
-    else return 0
-  }
-  let compareExercisesPercentDesc = (user1, user2) => -compareExercisesPercent(user1, user2);
+    let compareExercisesPercentDesc = (user1, user2) => -compareExercisesPercent(user1, user2);
 
-  let compareQuizzesPercent = (user1, user2) => {
-    if (user1.stats.quizzes.percent < user1.stats.quizzes.percent) {
-      return -1
+    let compareQuizzesPercent = (user1, user2) => {
+        if (user1.stats.quizzes.percent < user2.stats.quizzes.percent) {
+            return -1
+        }
+        if (user1.stats.quizzes.percent > user2.stats.quizzes.percent) {
+            return 1
+        } else return 0
     }
-    if (user2.stats.quizzes.percent > user2.stats.quizzes.percent) {
-      return 1
-    }
-    else return 0
-  }
-  let compareQuizzesPercentDesc = (user1, user2) => -compareQuizzesPercent(user1, user2);
+    let compareQuizzesPercentDesc = (user1, user2) => -compareQuizzesPercent(user1, user2);
 
-  let compareQuizzesScoreAvg = (user1, user2) => {
-    if (user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg) {
-      return -1
+    let compareQuizzesScoreAvg = (user1, user2) => {
+        if (user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg) {
+            return -1
+        }
+        if (user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg) {
+            return 1
+        } else return 0
     }
-    if (user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg) {
-      return 1
-    }
-    else return 0
-  }
-  let compareQuizzesScoreAvgDesc = (user1, user2) => -compareQuizzesScoreAvg(user1, user2);
+    let compareQuizzesScoreAvgDesc = (user1, user2) => -compareQuizzesScoreAvg(user1, user2);
 
-  let compareReadsPercent = (user1, user2) => {
-    if (user1.stats.reads.percent < user2.stats.reads.percent) {
-      return -1
+    let compareReadsPercent = (user1, user2) => {
+        if (user1.stats.reads.percent < user2.stats.reads.percent) {
+            return -1
+        }
+        if (user1.stats.reads.percent > user2.stats.reads.percent) {
+            return 1
+        } else return 0
     }
-    if (user1.stats.reads.percent > user2.stats.reads.percent) {
-      return 1
-    }
-    else return 0
-  }
-  let compareReadsPercentDesc = (user1, user2) => -compareReadsPercent(user1, user2);
+    let compareReadsPercentDesc = (user1, user2) => -compareReadsPercent(user1, user2);
 
 
     if (orderBy === "name") {
@@ -289,7 +291,7 @@ window.filterUsers = (users, search) => {
 //4)processCohortData(options)
 
 window.processCohortData = (options) => {
-        let options = courses.map(
+        let options = coursesData.map(
             function(cohort) {
                 return cohort;
             });
