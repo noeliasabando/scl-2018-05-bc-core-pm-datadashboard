@@ -5,8 +5,10 @@ let coursesData = {};
 
 let cohortUsers = [];
 let userStats = [];
+//let cohortsList = [];
 
-let loadUserJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
+
+let loadUserJson = fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
         usersData = data;
@@ -16,7 +18,7 @@ let loadUserJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
         console.error(err);
     })
 
-let loadProgressJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
+let loadProgressJson = fetch("../../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
     .then(response => response.json())
     .then(data => {
         progressData = data;
@@ -25,7 +27,7 @@ let loadProgressJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.j
         console.error(err);
     })
 
-let loadCohortsJson = fetch("../data/cohorts.json")
+let loadCohortsJson = fetch("../../data/cohorts.json")
     .then(response => response.json())
     .then(data => {
         data.forEach(
@@ -33,13 +35,14 @@ let loadCohortsJson = fetch("../data/cohorts.json")
                 if (!cohort.coursesIndex) {
                     coursesData[cohort.id] = []
                 } else coursesData[cohort.id] = Object.keys(cohort.coursesIndex);
+
             });
     })
     .catch((err) => {
         console.error(err);
     })
 
-Promise.all([loadUserJson, loadProgressJson, loadCohortsJson]).then((values)=>{
+Promise.all([loadUserJson, loadProgressJson, loadCohortsJson]).then((values) => {
     userStats = window.computeUsersStats(usersData, progressData, coursesData["lim-2018-03-pre-core-pw"])
 })
 
@@ -48,7 +51,6 @@ window.computeUsersStats = (users, progress, courses) => {
     let lista = users.map(
         (user) => {
             if (Object.keys(progress[user.id]).length === 0) {
-                console.log("progreso vacío")
                 return user
             }
 
@@ -75,7 +77,7 @@ window.computeUsersStats = (users, progress, courses) => {
             return user;
         }
     )
-    return lista.filter((user)=>user.hasOwnProperty("stats"));
+    return lista.filter((user) => user.hasOwnProperty("stats"));
 }
 
 //1) computeUsersStats(users, progress, courses)
@@ -292,26 +294,26 @@ window.filterUsers = (users, search) => {
 }
 
 //4)processCohortData(options)
+//window.processCohortData = (options) => {
+//crear objeto cohorts.la variable origen es courses data que saca los datos de los cohorts, esta variable es un aarreglo que contiene objetois con la propiedad id.
 
-window.processCohortData = (options) => {
-        let options = coursesData.map(
-            function(cohort) {
-                return cohort;
-            });
+//cohortsList = Object.keys(cohort[coursesData.courses.id]);
 
-    }
-    /*Esta función es la que deberíamos estar al seleccionar un cohort y cada vez que el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta función debe invocar internamente a computeUsersStats(), sortUsers() y filterUsers().
-    Argumentos
 
-    options: An object with the following keys:
-        cohort: Objeto cohort (de la lista de cohorts)
-        cohortData: Objeto con dos propiedades:
-            users: Arreglo de usuarios miembros del cohort.
-            progress: Objeto con data de progreso de cada usuario en el contexto de un cohort en particular.
-        orderBy: String con criterio de ordenado (ver sortUsers).
-        orderDirection: String con dirección de ordenado (ver sortUsers).
-        search: String de búsqueda (ver filterUsers)
+//}
 
-    Valor de retorno
+/*Esta función es la que deberíamos estar al seleccionar un cohort y cada vez que el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta función debe invocar internamente a computeUsersStats(), sortUsers() y filterUsers().
+Argumentos
 
-    Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida (ver computeUsersStats).*/
+options: An object with the following keys:
+    cohort: Objeto cohort (de la lista de cohorts)
+    cohortData: Objeto con dos propiedades:
+        users: Arreglo de usuarios miembros del cohort.
+        progress: Objeto con data de progreso de cada usuario en el contexto de un cohort en particular.
+    orderBy: String con criterio de ordenado (ver sortUsers).
+    orderDirection: String con dirección de ordenado (ver sortUsers).
+    search: String de búsqueda (ver filterUsers)
+
+Valor de retorno
+
+Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida (ver computeUsersStats).*/
