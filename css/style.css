@@ -188,6 +188,18 @@ ul ul a {
     padding: 10px;
     border: none;
     margin-top: 15px;
+    padding: left;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
 }
 
 
@@ -203,12 +215,3 @@ ul ul a {
 /*Media Querys*/
 
 @media screen and (max-width: 320px) {}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-}

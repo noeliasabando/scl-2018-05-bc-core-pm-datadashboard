@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cohort Chile</title>
+    <title>Cohort lim-2018-03-pre-core-pw</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -21,23 +21,13 @@
                         <a href="index.html">Inicio</a>
                     </li>
                     <li>
-                        <a href="#sclSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cohorts</a>
-                        <ul class="collapse list-unstyled" id="sclSubmenu">
+                        <a href="#peSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cohorts</a>
+                        <ul class="collapse list-unstyled" id="peSubmenu">
                             <li>
-                                <a href="chile.html">Chile </a>
-                            </li>
-                            <li>
-                                <a href="chile.html">Perú</a>
-                            </li>
-                            <li>
-                                <a href="chile.html">México</a>
-                            </li>
-                            <li>
-                                <a href="chile.html">Brasil</a>
+                                <a href="lim-2018-03-pre-core-pw.html">lim-2018-03-pre-core-pw</a>
                             </li>
                         </ul>
                     </li>
-                </ul>
                 </ul>
                 <div class="search">
                     <form class="form-inline">
@@ -45,42 +35,25 @@
                         <input class="form-control mr-sm-2" type="text" id="InputSearch" onkeyup="searchstu()" placeholder="Buscar">
                     </form>
                 </div>
-                <div>
-                    <p id="PerfilAlumna"></p>
-                </div>
             </nav>
             <div class="col-9 col-sm-9 col-md-9 col-lg-9" id="Cohorts">
                 <div class="row">
                     <div class="col-6 col-sm-6 col-md-6 col-lg-6" id="superior">
-                        <h1>Estás en el Datadashboard de Chile</h1>
+                        <h1>Estás en el Datadashboard de lim-2018-03-pre-core-pw</h1>
                     </div>
                     <div class="col-3 col-sm-3 col-md-3 col-lg-3" id="superior">
-                        <button class="btn">Descargar Datos</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-9 col-sm-9 col-md-9 col-lg-9">
                         <div class="cont">
-                            <div class="selector">
-                                <label for="cohort">Elige un cohort</label><br>
-                                <select id="cohort" name="cohort" multiply>
-                                      <option value="1" active >SCL 2018 1</option>
-                                      <option value="2">SCL 2018 2</option>
-                                    </select>
-                                <br>
-                                <button class="btn-cont" name="select" id="select">Elegir Cohort</button>
-                                </p>
-                            </div>
                             <div class="studentdata">
-                                <div id="output"></div>
+                                <div class="studentlist">
+                                    <h1>Lista de Alumnas</h1>
+                                    <div id="display">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-                            <p>Laboratoria 2018</p>
                         </div>
                     </div>
                 </div>
