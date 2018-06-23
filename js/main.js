@@ -1,3 +1,11 @@
+//tabla por defecto
+window.onload = (
+    function loadtable(event) {
+        let cohortSignup = "lim-2018-03-pre-core-pw"; //aqui poner el nombre el cohort
+        let cohort = window.filterUsers(userStats, cohortSignup);
+        imprimirLista(cohort)
+    })
+
 //busqueda
 let inputText = document.getElementById("InputSearch");
 inputText.addEventListener("keypress", (event) => {
@@ -29,16 +37,8 @@ function imprimirLista(usersList) {
 //Menu
 let botonCohort = document.getElementById("btn")
 botonCohort.addEventListener("click", (event) => {
-    let cohortsname = inputText.value; //aqui poner el nombre el cohort
-    let perfil = window.filterUsers(userStats, cohortsname);
-    imprimirLista(perfil)
+    let cohortsname = "lim-2018-03-pre-core-pw"; //aqui poner el nombre el cohort
+    let lim = window.filterUsers(userStats, cohortsname);
+    imprimirLista(lim)
 
 })
-
-
-window.onload = (
-    function loadtable(event) {
-        let cohortSignup = "lim-2018-03-pre-core-pw"; //aqui poner el nombre el cohort
-        let cohort = window.filterUsers(userStats, cohortSignup);
-        imprimirLista(cohort)
-    })

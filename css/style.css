@@ -21,6 +21,11 @@ h1 {
     font-weight: 600;
 }
 
+h2 {
+    font-size: 1em;
+    font-weight: 400;
+}
+
 .container {
     display: grid;
     max-width: 100%;
@@ -191,7 +196,7 @@ ul ul a {
 }
 
 .btn-cont {
-    background-color: #FF009E;
+    background-color: #FFE521;
     color: black;
     padding: 10px;
     border: none;
