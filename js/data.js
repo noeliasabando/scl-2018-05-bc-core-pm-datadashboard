@@ -1,17 +1,19 @@
 // Raw Data
 let usersData = [];
 let progressData = {};
-let coursesData = {};
+let cohortData = {};
 
 let cohortUsers = [];
 let userStats = [];
-//let cohortsList = [];
-
+let cohorts = [];
+let courses = [];
+let userByCohort = [];
 
 let loadUserJson = fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
         usersData = data;
+        userByCohort = usersData.filter(user => user.signupCohort = user.signupCohort); //revisar!!
         cohortUsers = usersData.filter(user => user.signupCohort === "lim-2018-03-pre-core-pw");
     })
     .catch((err) => {
@@ -33,17 +35,24 @@ let loadCohortsJson = fetch("../../data/cohorts.json")
         data.forEach(
             function(cohort) {
                 if (!cohort.coursesIndex) {
-                    coursesData[cohort.id] = []
-                } else coursesData[cohort.id] = Object.keys(cohort.coursesIndex);
-
-            });
+                    cohortData[cohort.id] = []
+                } else cohortData[cohort.id] = Object.keys(cohort.coursesIndex);
+            })
+        data.forEach(
+            function(cohort) {
+                courses = cohortData[cohort.id];
+            })
+        data.forEach(
+            function(cohort) {
+                cohorts[cohortData] = Object.keys(cohort.id); // revisar esto!!
+            })
     })
     .catch((err) => {
         console.error(err);
     })
 
 Promise.all([loadUserJson, loadProgressJson, loadCohortsJson]).then((values) => {
-    userStats = window.computeUsersStats(usersData, progressData, coursesData["lim-2018-03-pre-core-pw"])
+    userStats = window.computeUsersStats(usersData, progressData, cohortData["lim-2018-03-pre-core-pw"])
 })
 
 window.computeUsersStats = (users, progress, courses) => {
@@ -293,27 +302,19 @@ window.filterUsers = (users, search) => {
     return filterName
 }
 
-//4)processCohortData(options)
-//window.processCohortData = (options) => {
-//crear objeto cohorts.la variable origen es courses data que saca los datos de los cohorts, esta variable es un aarreglo que contiene objetois con la propiedad id.
+//4) processCohortData(options)
+/* windows.processCohortData = (options) => {
+    options = {
+        cohort: cohorts,
+        cohortData: {
+            users: cohortUsers,
+            progress: Objeto con data de progreso de cada usuario en el contexto de un cohort en particular.
+            orderBy: String con criterio de ordenado(ver sortUsers).
+            orderDirection: String con dirección de ordenado(ver sortUsers).
+            search: String de búsqueda(ver filterUsers)
+        }
+        } valor de retorno
 
-//cohortsList = Object.keys(cohort[coursesData.courses.id]);
-
-
-//}
-
-/*Esta función es la que deberíamos estar al seleccionar un cohort y cada vez que el usuario cambia los criterios de ordenado y filtrado en la interfaz. Esta función debe invocar internamente a computeUsersStats(), sortUsers() y filterUsers().
-Argumentos
-
-options: An object with the following keys:
-    cohort: Objeto cohort (de la lista de cohorts)
-    cohortData: Objeto con dos propiedades:
-        users: Arreglo de usuarios miembros del cohort.
-        progress: Objeto con data de progreso de cada usuario en el contexto de un cohort en particular.
-    orderBy: String con criterio de ordenado (ver sortUsers).
-    orderDirection: String con dirección de ordenado (ver sortUsers).
-    search: String de búsqueda (ver filterUsers)
-
-Valor de retorno
-
-Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida (ver computeUsersStats).*/
+     Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida(ver computeUsersStats).
+    }
+}*/

@@ -17,7 +17,8 @@ let liSearch = ulSearch.getElementsByTagName("li");*/
 // print list
 
 
-window.onload = function displayCohort() {
-    let listaAlumnas = window.sortUsers(userStats, "percent", "ASC");
-    document.getElementById("display").innerHTML = listaAlumnas;
-};
+//window.onload = function displayCohort() {
+//    let listaAlumnas = window.sortUsers(userStats, "percent", "ASC");
+//    let listaDisplay = listaAlumnas.use
+//document.getElementById("display").innerHTML = listaDisplay;
+//};
