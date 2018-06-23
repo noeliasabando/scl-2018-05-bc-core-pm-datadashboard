@@ -318,7 +318,3 @@ window.filterUsers = (users, search) => {
      Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida(ver computeUsersStats).
     }
 }*/
-window.filterUsersbyCohort = (users, search) => {
-    let filtercohort = users.filter((user) => user.signupCohort.includes(search));
-    return filtercohort;
-}
