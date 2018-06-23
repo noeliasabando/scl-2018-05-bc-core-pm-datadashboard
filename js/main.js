@@ -1,3 +1,4 @@
+//busqueda
 let inputText = document.getElementById("InputSearch");
 inputText.addEventListener("keypress", (event) => {
     let key = event.which || event.keyCode;
@@ -10,7 +11,6 @@ inputText.addEventListener("keypress", (event) => {
 })
 
 function imprimirLista(usersList) {
-    console.log(userStats)
     let lista = document.querySelector("#display")
     lista.innerHTML = "";
     usersList.forEach((userStats) => {
@@ -26,10 +26,19 @@ function imprimirLista(usersList) {
     })
 }
 
+//Menu
 let botonCohort = document.getElementById("btn")
 botonCohort.addEventListener("click", (event) => {
-    let cohortsname = inputText.value;
+    let cohortsname = inputText.value; //aqui poner el nombre el cohort
     let perfil = window.filterUsers(userStats, cohortsname);
     imprimirLista(perfil)
-    inputText.value = "lim-2018-03-pre-core-pw"; // aqu[i hay poner el nombre del cohort]
+
 })
+
+
+window.onload = (
+    function loadtable(event) {
+        let cohortSignup = "lim-2018-03-pre-core-pw"; //aqui poner el nombre el cohort
+        let cohort = window.filterUsers(userStats, cohortSignup);
+        imprimirLista(cohort)
+    })
