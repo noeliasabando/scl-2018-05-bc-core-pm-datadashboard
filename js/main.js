@@ -1,23 +1,39 @@
-//Search
-/*let filterSearch = inputSearch.value.toUpperCase();
-let ulSearch = document.getElementById("cohortUL");
-let liSearch = ulSearch.getElementsByTagName("li");*/
+let botonCohort= document.getElementById("btn")
+botonCohort.addEventListener("click", (event)=>{
+    imprimirLista(userStats)
+})
 
-// Loop through all list items, and hide those who don't match the search query
-/*  for (i = 0; i < liSearch.length; i++) {
-        a = liSearch[i].getElementsByTagName("a")[0];
-        if (a.innerHTML.toUpperCase().indexOf(filterSearch) > -1) {
-            liSearch[i].style.display = "";
-        } else {
-            liSearch[i].style.display = "none";
-        }
+
+
+let inputText=document.getElementById("InputSearch");
+inputText.addEventListener("keypress", (event) =>{
+    let key= event.which || event.keyCode;
+    if(key===13){
+        let name= inputText.value; 
+        let perfil= window.filterUsers(userStats, name);
+        imprimirLista(perfil)
+        inputText.value= "";     
     }
-} */
+}) 
 
-// print list
+function imprimirLista(usersList){
+    console.log(userStats)
+    let lista= document.getElementById("display")
+    lista.innerHTML= ""
+    usersList.forEach((userStats)=>{
+        let listaConStats= `<div class='fila'>
+        <div class="name">${userStats.name}</div>
+        <div class="percent">${userStats.stats.percent}</div>
+        <div class="exercisesCompleted">${userStats.stats.exercises.completed}</div>
+        <div class="quizzesCompleted">${userStats.stats.quizzes.completed}</div>
+        <div class="quizzesScoreAvg">${userStats.stats.quizzes.scoreAvg}</div>
+        <div class="readsCompleted">${userStats.stats.reads.completed}</div>
+        </div>`        
+        lista.innerHTML +=listaConStats             
+    })
+}
 
 
-window.onload = function displayCohort() {
-    let listaAlumnas = window.sortUsers(userStats, "percent", "ASC");
-    document.getElementById("display").innerHTML = listaAlumnas;
-};
+
+   
+    
