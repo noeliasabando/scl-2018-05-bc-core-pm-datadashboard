@@ -1,10 +1,3 @@
-let botonCohort = document.getElementById("btn")
-botonCohort.addEventListener("click", (event) => {
-    imprimirLista(userStats)
-})
-
-
-
 let inputText = document.getElementById("InputSearch");
 inputText.addEventListener("keypress", (event) => {
     let key = event.which || event.keyCode;
@@ -32,3 +25,11 @@ function imprimirLista(usersList) {
         lista.innerHTML += listaConStats
     })
 }
+
+let botonCohort = document.getElementById("btn")
+botonCohort.addEventListener("click", (event) => {
+    let cohortsname = inputText.value;
+    let perfil = window.filterUsers(userStats, cohortsname);
+    imprimirLista(perfil)
+    inputText.value = "lim-2018-03-pre-core-pw"; // aqu[i hay poner el nombre del cohort]
+})
