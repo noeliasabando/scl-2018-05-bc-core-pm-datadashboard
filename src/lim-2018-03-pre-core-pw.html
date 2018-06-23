@@ -21,50 +21,86 @@
                         <a href="index.html">Inicio</a>
                     </li>
                     <li>
-                        <a href="#peSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cohorts</a>
-                        <ul class="collapse list-unstyled" id="peSubmenu">
+                        <a href="#Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ver Cohorts</a>
+                        <ul class="collapse list-unstyled" id="Submenu">
                             <li>
-                                <a href="lim-2018-03-pre-core-pw.html">lim-2018-03-pre-core-pw</a>
+                                <a href="#" id="btn">lim-2018-03-pre-core-pw</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
 
-                <button id= "btn">Cohort</button>
 
                 <div class="search">
                     <!-- <form class="form-inline"> -->
-                        <h1>Buscar por alumna</h1>
-                        <input class="form-control mr-sm-2" type="text" id="InputSearch" placeholder="Buscar">
+                    <h1>Buscar por alumna</h1>
+                    <input class="form-control mr-sm-2" type="text" id="InputSearch" placeholder="Buscar">
                     <!-- </form> -->
                 </div>
-                
+
             </nav>
             <div class="col-9 col-sm-9 col-md-9 col-lg-9" id="Cohorts">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12" id="superior">
-                        <h1>Estás en el Datadashboard de lim-2018-03-pre-core-pw</h1>
+                        <h1>Estás en el Datadashboard de Laboratoria</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="cont">
                             <div class="studentdata">
-                                <div class="studentlist">
-                                    <h1>Lista de Alumnas</h1>
-                                    <div id="lista">
-                                        <div class="fila">
-                                            <div class="name">Nombre</div>
-                                            <div class="percent">Avance general</div>
-                                            <div class="exercisesCompleted">Ejercicios Completados</div>
-                                            <div class="quizzesCompleted">Quizzes Completados</div>
-                                            <div class="quizzesScoreAvg">Promedio puntuaciones de Quizzes</div>
-                                            <div class="readsCompleted">Lecturas Completadas</div>                      
-                                        </div>                    
-                                    </div>
-                                    <div id="display">
+                                <div class="results">
+                                    <h1>Resultados Cohort</h1>
+                                    <div class="rankingbox">
 
                                     </div>
+                                    <div class="graph">
+
+                                    </div>
+                                    <div class="rankingbox">
+
+                                    </div>
+                                </div>
+                                <div class="studentlist">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4">
+                                                    <h1>Lista de Alumnas del Cohort</h1>
+                                                </th>
+                                                <th>
+                                                    <button class="btn-cont"> Ordenar por Nombre (abc)</button>
+                                                </th>
+                                                <th>
+                                                    <button class="btn-cont">Ordenar por Promedio (+ a -)</button>
+                                                </th>
+
+                                            </tr>
+                                            <tr>
+                                                <td class="name">
+                                                    <h2>Nombre</h2>
+                                                </td>
+                                                <td class="percent">
+                                                    <h2>Avance general</h2>
+                                                </td>
+                                                <td class="exercisesCompleted">
+                                                    <h2>Ejercicios Completados</h2>
+                                                </td>
+                                                <td class="quizzesCompleted">
+                                                    <h2>Quizzes Completados</h2>
+                                                </td>
+                                                <td class="quizzesScoreAvg">
+                                                    <h2>Promedio puntuaciones de Quizzes</h2>
+                                                </td>
+                                                <td class="readsCompleted">
+                                                    <h2>Lecturas Completadas</h2>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="display">
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
