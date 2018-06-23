@@ -1,7 +1,7 @@
-//tabla por defecto
-window.onload = function() {
-    imprimirLista(userStats)
-};
+window.addEventListener('load', home);
+
+function home() {} // agregar cuadros ranking aqui
+
 
 //busqueda
 let inputText = document.getElementById("InputSearch");
@@ -34,5 +34,18 @@ function imprimirLista(usersList) {
 //Menu
 let botonCohort = document.getElementById("btn")
 botonCohort.addEventListener("click", (event) => {
-    imprimirLista(userStats)
+    imprimirLista(userStats);
 })
+
+//otros botones
+
+let botonCohort = document.getElementById("nameord") //falta ver como ordenar
+botonCohort.addEventListener("click", (event) => {
+    imprimirLista(userStats);
+})
+let botonCohort = document.getElementById("aveord") //falta ver como ordenar
+botonCohort.addEventListener("click", (event) => {
+    imprimirLista(userStats);
+})
+
+//grafica
