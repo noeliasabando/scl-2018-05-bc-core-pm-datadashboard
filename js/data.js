@@ -5,7 +5,7 @@ let cohortData = {};
 
 let cohortUsers = [];
 let userStats = [];
-let cohorts = [];
+let cohorts = {};
 let courses = [];
 let userByCohort = [];
 
@@ -29,24 +29,22 @@ let loadProgressJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.j
         console.error(err);
     })
 
-let loadCohortsJson = fetch("../data/cohorts.json")
+let loadCohortsJson = fetch("/../data/cohorts.json")
     .then(response => response.json())
     .then(data => {
         data.forEach(
             function(cohort) {
                 if (!cohort.coursesIndex) {
-                    cohortData[cohort.id] = []
+                    cohortData[cohort.id] = [];
                 } else cohortData[cohort.id] = Object.keys(cohort.coursesIndex);
             })
         data.forEach(
             function(cohort) {
                 courses = cohort.coursesIndex;
             })
-        Object.keys(data).forEach(
-            function(cohort) {
-                cohorts = cohort.id; // revisar esto!!
-            }
-        )
+        for (cohort of data) {
+            cohorts[cohort.id] = {};
+        }
     })
     .catch((err) => {
         console.error(err);
@@ -320,3 +318,7 @@ window.filterUsers = (users, search) => {
      Nuevo arreglo de usuarios ordenado y filtrado con la propiedad stats añadida(ver computeUsersStats).
     }
 }*/
+window.filterUsersbyCohort = (users, search) => {
+    let filtercohort = users.filter((user) => user.signupCohort.includes(search));
+    return filtercohort;
+}

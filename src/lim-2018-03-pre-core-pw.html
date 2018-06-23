@@ -21,24 +21,21 @@
                         <a href="index.html">Inicio</a>
                     </li>
                     <li>
-                        <a href="#peSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cohorts</a>
-                        <ul class="collapse list-unstyled" id="peSubmenu">
-                            <li>
-                                <a href="lim-2018-03-pre-core-pw.html">lim-2018-03-pre-core-pw</a>
-                            </li>
+                        <a href="#Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cohorts</a>
+                        <ul class="collapse list-unstyled" id="Submenu">
                         </ul>
                     </li>
                 </ul>
 
-                <button id= "btn">Cohort</button>
+                <button id="btn">Cohort</button>
 
                 <div class="search">
                     <!-- <form class="form-inline"> -->
-                        <h1>Buscar por alumna</h1>
-                        <input class="form-control mr-sm-2" type="text" id="InputSearch" placeholder="Buscar">
+                    <h1>Buscar por alumna</h1>
+                    <input class="form-control mr-sm-2" type="text" id="InputSearch" placeholder="Buscar">
                     <!-- </form> -->
                 </div>
-                
+
             </nav>
             <div class="col-9 col-sm-9 col-md-9 col-lg-9" id="Cohorts">
                 <div class="row">
@@ -51,20 +48,38 @@
                         <div class="cont">
                             <div class="studentdata">
                                 <div class="studentlist">
-                                    <h1>Lista de Alumnas</h1>
-                                    <div id="lista">
-                                        <div class="fila">
-                                            <div class="name">Nombre</div>
-                                            <div class="percent">Avance general</div>
-                                            <div class="exercisesCompleted">Ejercicios Completados</div>
-                                            <div class="quizzesCompleted">Quizzes Completados</div>
-                                            <div class="quizzesScoreAvg">Promedio puntuaciones de Quizzes</div>
-                                            <div class="readsCompleted">Lecturas Completadas</div>                      
-                                        </div>                    
-                                    </div>
-                                    <div id="display">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th colspan="6">
+                                                    <h1>Lista de Alumnas</h1>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td class="name">
+                                                    <h1>Nombre</h1>
+                                                </td>
+                                                <td class="percent">
+                                                    <h1>Avance general</h1>
+                                                </td>
+                                                <td class="exercisesCompleted">
+                                                    <h1>Ejercicios Completados</h1>
+                                                </td>
+                                                <td class="quizzesCompleted">
+                                                    <h1>Quizzes Completados</h1>
+                                                </td>
+                                                <td class="quizzesScoreAvg">
+                                                    <h1>Promedio puntuaciones de Quizzes</h1>
+                                                </td>
+                                                <td class="readsCompleted">
+                                                    <h1>Lecturas Completadas</h1>
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="display">
 
-                                    </div>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

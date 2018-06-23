@@ -163,11 +163,6 @@ ul ul a {
     background-color: white;
 }
 
-.table {
-    width: 100%;
-    margin-bottom: 5px;
-}
-
 #cohort {
     width: 95%;
     float: left;
@@ -189,7 +184,7 @@ ul ul a {
 }
 
 .studentlist {
-    height: 500px;
+    min-height: 500px;
     padding: 15px;
     background-color: beige;
     margin: 15px;
@@ -207,27 +202,11 @@ ul ul a {
 table {
     width: 100%;
     text-align: center;
+    background-color: beige;
 }
 
 table th,
 table td {
     padding: 15px;
     text-align: left;
-
-
-
-
-/*Etiquetass*/
-
-
-/* Arreglo de conflictos de  css con bootstrap*/
-
-
-/*prueba de menu*/
-
-
-/*Media Querys*/
-
-@media screen and (max-width: 320px) {}
-
-
+}
