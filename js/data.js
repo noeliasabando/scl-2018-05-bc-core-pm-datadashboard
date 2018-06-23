@@ -40,16 +40,18 @@ let loadCohortsJson = fetch("../../data/cohorts.json")
             })
         data.forEach(
             function(cohort) {
-                courses = cohortData[cohort.id];
+                courses = cohort.coursesIndex;
             })
-        data.forEach(
+        Object.keys(data).forEach(
             function(cohort) {
-                cohorts[cohortData] = Object.keys(cohort.id); // revisar esto!!
-            })
+                cohorts = cohort.id; // revisar esto!!
+            }
+        )
     })
     .catch((err) => {
         console.error(err);
     })
+
 
 Promise.all([loadUserJson, loadProgressJson, loadCohortsJson]).then((values) => {
     userStats = window.computeUsersStats(usersData, progressData, cohortData["lim-2018-03-pre-core-pw"])
