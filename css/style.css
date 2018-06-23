@@ -213,4 +213,21 @@ table th,
 table td {
     padding: 15px;
     text-align: left;
-}
+
+
+
+
+/*Etiquetass*/
+
+
+/* Arreglo de conflictos de  css con bootstrap*/
+
+
+/*prueba de menu*/
+
+
+/*Media Querys*/
+
+@media screen and (max-width: 320px) {}
+
+
