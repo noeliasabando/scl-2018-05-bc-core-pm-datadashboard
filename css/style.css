@@ -43,6 +43,7 @@ h2 {
 .col-6 {
     text-align: left;
     padding-left: 20px;
+    padding-top: 20px;
 }
 
 .col-9 {
@@ -82,7 +83,7 @@ h2 {
     float: unset;
 }
 
-.search {
+#search {
     height: 100px;
     padding: 10px;
     background-color: #FFE521;
@@ -145,27 +146,31 @@ ul ul a {
 /*Contenido*/
 
 .results {
-    width: 100%;
     height: 200px;
     margin-top: 10px;
     padding: 10px;
-    background-color: beige;
+    float: left;
 }
 
 .rankingbox {
-    width: 31%;
-    height: 80%;
+    height: 200px;
     float: left;
     margin: 5px;
     background-color: white;
 }
 
-.graph {
-    width: 31%;
-    height: 80%;
+.progress {
+    width: 200px;
+    height: 50px;
     float: left;
     margin: 5px;
+    padding: 10px;
     background-color: white;
+}
+
+.progress-type,
+.progress-completed {
+    padding: 5px;
 }
 
 #cohort {
@@ -182,12 +187,11 @@ ul ul a {
     padding: 5px;
 }
 
-.studentlist {
-    height: 600px;
+#studentlist {
+    min-height: 600px;
     padding: 15px;
     background-color: beige;
     margin: 15px;
-    overflow: scroll;
 }
 
 .btn-cont {
@@ -206,11 +210,18 @@ ul ul a {
 table {
     width: 100%;
     text-align: center;
-    background-color: beige;
 }
 
 table th,
 table td {
     padding: 15px;
     text-align: left;
+}
+
+.hidden {
+    display: none;
+}
+
+.row {
+    background-color: beige;
 }

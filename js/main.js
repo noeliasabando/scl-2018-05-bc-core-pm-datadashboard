@@ -1,9 +1,10 @@
-window.addEventListener('load', home);
-
-function home() {
-    alert("Elige un cohort para comenzar");
+function unhide() {
+    let show = document.getElementById("studentlist");
+    show.style.display = "block";
+    let hide = document.getElementById("bienvenida");
+    hide.style.display = "none";
+    imprimirLista(userStats);
 }
-// agregar cuadros ranking aqui
 
 
 //Busqueda
@@ -34,11 +35,12 @@ function imprimirLista(usersList) {
     })
 }
 
+
 //Menu
-let botonCohort = document.getElementById("btn")
-botonCohort.addEventListener("click", (event) => {
-    imprimirLista(userStats);
-})
+//let botonCohort = document.getElementById("btn")
+//botonCohort.addEventListener("click", (event) => {
+//    imprimirLista(userStats);
+//})
 
 //otros botones
 
