@@ -43,7 +43,7 @@ let butName = document.getElementById("nameord") //falta ver como ordenar
 butName.addEventListener("click", (event) => {
     imprimirLista(userStats);
 })
-let botonave = document.getElementById("aveord") //falta ver como ordenar
+let butAve = document.getElementById("aveord") //falta ver como ordenar
 butCohort.addEventListener("click", (event) => {
     imprimirLista(userStats);
 })
