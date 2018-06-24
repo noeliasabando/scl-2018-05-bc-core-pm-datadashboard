@@ -45,3 +45,6 @@ A continuación están los sketchs del producto a realizar.
 ### Sketch de Alta Fidelidad
 [Ir al scket de Alta Fidelidad](https://www.figma.com/proto/bd2lDczPiNs1tU7hO6y08zme/General?scaling=contain&node-id=34%3A146) 
 
+
+### Anexo
+El proyecto está con la opción para ser visible en GitHub Pages, sin embargo solo aparece el Readme, debido a que sacamos las carpetas JS y CSS de src para poder trabajar con Bootstrap.
