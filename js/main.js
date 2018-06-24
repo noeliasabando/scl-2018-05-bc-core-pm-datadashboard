@@ -37,13 +37,6 @@ function imprimirLista(usersList) {
 
 
 //Menu
-//let botonCohort = document.getElementById("btn")
-//botonCohort.addEventListener("click", (event) => {
-//    imprimirLista(userStats);
-//})
-
-//otros botones
-
 
 function seleccion() {
     if (document.getElementById("nameord").selected == true) {
