@@ -1,10 +1,11 @@
+
 function unhide() {
     let show = document.getElementById("studentlist");
     show.style.display = "block";
     let hide = document.getElementById("bienvenida");
     hide.style.display = "none";
     imprimirLista(userStats);
-}
+
 
 
 //Busqueda
