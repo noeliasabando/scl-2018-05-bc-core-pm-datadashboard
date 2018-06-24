@@ -1,7 +1,6 @@
 window.addEventListener('load', home);
 
 function home() {
-    alert("Elige un cohort para comenzar");
 }
 // agregar cuadros ranking aqui
 
