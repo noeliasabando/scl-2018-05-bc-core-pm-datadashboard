@@ -193,11 +193,10 @@ function scoreSum(progress, courses) {
 }
 
 /*2) sortUsers(users, orderBy, orderDirection) ORDERBY ordenar por nombre, porcentaje de completitud total(percent),
-porcentaje de ejercicios autocorregidos completados(exercises percente), porcentaje de quizzes completados(quizzes percent), 
+porcentaje de ejercicios autocorregidos completados(exercises percent), porcentaje de quizzes completados(quizzes percent), 
 puntuación promedio en quizzes completados(quizzes scoreavg), y porcentaje de lecturas completadas(reads percent).*/
 
 window.sortUsers = (users, orderBy, orderDirection) => {
-    debugger
     let compareNames = (user1, user2) => {
         if (user1.name < user2.name) {
             return -1
@@ -209,8 +208,6 @@ window.sortUsers = (users, orderBy, orderDirection) => {
     let compareNamesDesc = (user1, user2) => -compareNames(user1, user2);
 
     let comparePercent = (user1, user2) => {
-        console.log(user1)
-        console.log(user2)
         if (user1.stats.percent < user2.stats.percent) {
             return -1
         }

@@ -22,7 +22,7 @@ function imprimirLista(usersList) {
         let listaConStats = `<tr>
         <td class="name">${userStats.name}</td>
         <td class="percent">${userStats.stats.percent}</td>
-        <td class="exercisesCompleted">${userStats.stats.exercises.completed}</td>
+        <td class="exercisesCompleted">${userStats.stats.exercises.completed} de ${userStats.stats.exercises.total}</td>
         <td class="quizzesCompleted">${userStats.stats.quizzes.completed}</td>
         <td class="quizzesScoreAvg">${userStats.stats.quizzes.scoreAvg}</td>
         <td class="readsCompleted">${userStats.stats.reads.completed}</td>
@@ -39,13 +39,26 @@ botonCohort.addEventListener("click", (event) => {
 
 //otros botones
 
-let botonCohort = document.getElementById("nameord") //falta ver como ordenar
-botonCohort.addEventListener("click", (event) => {
-    imprimirLista(userStats);
+let botonName = document.getElementById("nameord") 
+botonName.addEventListener("click", (event) => {
+    let nombreOrdenado = window.sortUsers(userStats, "name", "ASC")
+    imprimirLista(nombreOrdenado);
 })
-let botonCohort = document.getElementById("aveord") //falta ver como ordenar
-botonCohort.addEventListener("click", (event) => {
-    imprimirLista(userStats);
+let botonAvance = document.getElementById("aveord") 
+botonAvance.addEventListener("click", (event) => {
+    let avanceGral = window.sortUsers(userStats, "percent", "ASC")
+    imprimirLista(avanceGral);
 })
 
-//grafica
+let botonejerciciosCompletados = document.getElementById("btnejerCom") 
+botonejerciciosCompletados.addEventListener("click", (event) => {
+    let ejerciciosOrdenados = window.sortUsers(userStats, "exercises percent", "ASC")
+    imprimirLista(ejerciciosOrdenados);
+})
+
+let botonPuntaje = document.getElementById("btnquizzes") 
+botonPuntaje.addEventListener("click", (event) => {
+    let promPtosQuizzes = window.sortUsers(userStats, "quizzes scoreAvg", "ASC")
+    imprimirLista(promPtosQuizzes);
+})
+
