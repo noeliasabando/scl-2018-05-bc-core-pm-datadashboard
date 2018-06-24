@@ -1,12 +1,3 @@
-function unhide() {
-    let show = document.getElementById("studentlist");
-    show.style.display = "block";
-    let hide = document.getElementById("bienvenida");
-    hide.style.display = "none";
-    imprimirLista(userStats);
-}
-
-
 //Busqueda
 let inputText = document.getElementById("InputSearch");
 inputText.addEventListener("keypress", (event) => {
@@ -37,7 +28,6 @@ function imprimirLista(usersList) {
 
 
 //Menu
-
 function seleccion() {
     if (document.getElementById("nameord").selected == true) {
         let nombreOrdenado = window.sortUsers(userStats, "name", "ASC")
@@ -58,4 +48,17 @@ function seleccion() {
         imprimirLista(promPtosQuizzes);
         console.log(" 3");
     }
+}
+
+let botonCohort = document.getElementById("btn")
+botonCohort.addEventListener("click", (event) => {
+    location = location;
+})
+
+function unhide() {
+    let show = document.getElementById("studentlist");
+    show.style.display = "block";
+    let hide = document.getElementById("bienvenida");
+    hide.style.display = "none";
+    imprimirLista(userStats);
 }
