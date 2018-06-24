@@ -1,9 +1,11 @@
 window.addEventListener('load', home);
 
-function home() {} // agregar cuadros ranking aqui
+function home() {
+}
+// agregar cuadros ranking aqui
 
 
-//busqueda
+//Busqueda
 let inputText = document.getElementById("InputSearch");
 inputText.addEventListener("keypress", (event) => {
     let key = event.which || event.keyCode;
@@ -39,26 +41,25 @@ botonCohort.addEventListener("click", (event) => {
 
 //otros botones
 
-let botonName = document.getElementById("nameord") 
-botonName.addEventListener("click", (event) => {
-    let nombreOrdenado = window.sortUsers(userStats, "name", "ASC")
-    imprimirLista(nombreOrdenado);
-})
-let botonAvance = document.getElementById("aveord") 
-botonAvance.addEventListener("click", (event) => {
-    let avanceGral = window.sortUsers(userStats, "percent", "ASC")
-    imprimirLista(avanceGral);
-})
 
-let botonejerciciosCompletados = document.getElementById("btnejerCom") 
-botonejerciciosCompletados.addEventListener("click", (event) => {
-    let ejerciciosOrdenados = window.sortUsers(userStats, "exercises percent", "ASC")
-    imprimirLista(ejerciciosOrdenados);
-})
+function seleccion() {
+    if (document.getElementById("nameord").selected == true) {
+        let nombreOrdenado = window.sortUsers(userStats, "name", "ASC")
+        imprimirLista(nombreOrdenado);
+        console.log("0");
+    }
+    if (document.getElementById("aveord").selected == true) {
+        let avanceGral = window.sortUsers(userStats, "percent", "ASC")
+        imprimirLista(avanceGral);
+        console.log("1");
+    } else if (document.getElementById("btnejerCom").selected == true) {
+        let ejerciciosOrdenados = window.sortUsers(userStats, "exercises percent", "ASC")
+        imprimirLista(ejerciciosOrdenados);
+        console.log(" 2");
 
-let botonPuntaje = document.getElementById("btnquizzes") 
-botonPuntaje.addEventListener("click", (event) => {
-    let promPtosQuizzes = window.sortUsers(userStats, "quizzes scoreAvg", "ASC")
-    imprimirLista(promPtosQuizzes);
-})
-
+    } else if (document.getElementById("btnquizzes").selected == true) {
+        let promPtosQuizzes = window.sortUsers(userStats, "quizzes scoreAvg", "ASC")
+        imprimirLista(promPtosQuizzes);
+        console.log(" 3");
+    }
+}

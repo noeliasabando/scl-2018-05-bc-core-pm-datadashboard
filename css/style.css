@@ -22,7 +22,7 @@ h1 {
 }
 
 h2 {
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 400;
 }
 
@@ -182,17 +182,12 @@ ul ul a {
     padding: 5px;
 }
 
-.selector {
-    height: 120px;
-    padding: 5px;
-    width: 150px;
-}
-
 .studentlist {
-    min-height: 500px;
+    height: 600px;
     padding: 15px;
     background-color: beige;
     margin: 15px;
+    overflow: scroll;
 }
 
 .btn-cont {
@@ -202,6 +197,10 @@ ul ul a {
     border: none;
     margin-top: 15px;
     padding: left;
+}
+
+.title {
+    text-align: left;
 }
 
 table {
