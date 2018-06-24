@@ -9,7 +9,7 @@ let cohorts = {};
 let courses = [];
 let userByCohort = [];
 
-let loadUserJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
+let loadUserJson = fetch("../../data/cohorts/lim-2018-03-pre-core-pw/users.json")
     .then(response => response.json())
     .then(data => {
         usersData = data;
@@ -20,7 +20,7 @@ let loadUserJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json")
         console.error(err);
     })
 
-let loadProgressJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
+let loadProgressJson = fetch("../../data/cohorts/lim-2018-03-pre-core-pw/progress.json")
     .then(response => response.json())
     .then(data => {
         progressData = data;
@@ -29,7 +29,7 @@ let loadProgressJson = fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.j
         console.error(err);
     })
 
-let loadCohortsJson = fetch("/../data/cohorts.json")
+let loadCohortsJson = fetch("../../data/cohorts.json")
     .then(response => response.json())
     .then(data => {
         data.forEach(
@@ -199,61 +199,61 @@ puntuación promedio en quizzes completados(quizzes scoreavg), y porcentaje de l
 window.sortUsers = (users, orderBy, orderDirection) => {
     let compareNames = (user1, user2) => {
         if (user1.name < user2.name) {
-            return -1
+            return -1;
         }
         if (user1.name > user2.name) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareNamesDesc = (user1, user2) => -compareNames(user1, user2);
 
     let comparePercent = (user1, user2) => {
         if (user1.stats.percent < user2.stats.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.percent > user2.stats.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let comparePercentDesc = (user1, user2) => -comparePercent(user1, user2);
 
     let compareExercisesPercent = (user1, user2) => {
         if (user1.stats.exercises.percent < user2.stats.exercises.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.exercises.percent > user2.stats.exercises.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareExercisesPercentDesc = (user1, user2) => -compareExercisesPercent(user1, user2);
 
     let compareQuizzesPercent = (user1, user2) => {
         if (user1.stats.quizzes.percent < user2.stats.quizzes.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.quizzes.percent > user2.stats.quizzes.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareQuizzesPercentDesc = (user1, user2) => -compareQuizzesPercent(user1, user2);
 
     let compareQuizzesScoreAvg = (user1, user2) => {
         if (user1.stats.quizzes.scoreAvg < user2.stats.quizzes.scoreAvg) {
-            return -1
+            return -1;
         }
         if (user1.stats.quizzes.scoreAvg > user2.stats.quizzes.scoreAvg) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareQuizzesScoreAvgDesc = (user1, user2) => -compareQuizzesScoreAvg(user1, user2);
 
     let compareReadsPercent = (user1, user2) => {
         if (user1.stats.reads.percent < user2.stats.reads.percent) {
-            return -1
+            return -1;
         }
         if (user1.stats.reads.percent > user2.stats.reads.percent) {
-            return 1
-        } else return 0
+            return 1;
+        } else return 0;
     }
     let compareReadsPercentDesc = (user1, user2) => -compareReadsPercent(user1, user2);
 
@@ -288,9 +288,9 @@ window.sortUsers = (users, orderBy, orderDirection) => {
             users.sort(compareReadsPercent)
         } else users.sort(compareReadsPercentDesc)
     }
+
     return users
 }
-
 
 //3) filterUsers(users, search)
 

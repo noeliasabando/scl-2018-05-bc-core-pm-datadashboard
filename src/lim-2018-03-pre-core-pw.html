@@ -16,6 +16,9 @@
                 <div class="sidebar-header">
                     <img src="../img/logolaboratoria.png" id="logo" alt="Logo Laboratoria">
                 </div>
+                <div>
+                    <h1>Estás en Lima 2018 03 Pre core</h1>
+                </div>
                 <ul class="list-unstyled components">
                     <li>
                         <a href="index.html">Inicio</a>
@@ -24,7 +27,7 @@
                         <a href="#Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Ver Cohorts</a>
                         <ul class="collapse list-unstyled" id="Submenu">
                             <li>
-                                <a href="#" id="btn">lim-2018-03-pre-core-pw</a>
+                                <a href="#" id="btn">Lima 2018 03 Pre core</a>
                             </li>
 
                         </ul>
@@ -52,37 +55,24 @@
                             <div class="studentdata">
                                 <div class="results">
                                     <h1>Resultados Cohort</h1>
-                                    <div class="rankingbox">
-                                        <h2>Mejores resultados</h2>
-                                        <div id="primercuadro"></div>
-                                    </div>
-                                    <div class="graph">
-
-                                    </div>
-                                    <div class="rankingbox">
-
-                                    </div>
+                                    <canvas id="pieChart"></canvas>
                                 </div>
                                 <div class="studentlist">
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th colspan="4">
+                                                <th colspan="5" class="title">
                                                     <h1>Lista de Alumnas del Cohort</h1>
                                                 </th>
                                                 <th>
-                                                    <button class="btn-cont" id="nameord"> Ordenar por Nombre (abc)</button>
+                                                    <select onchange="seleccion()">
+                                                    <option >Ordenar los resultados</option>
+                                                    <option id="nameord">Ordenar por Nombre (abc)</option> 
+                                                    <option id="aveord">Avance General % (ASC)</option> 
+                                                    <option id="btnejerCom">Ejercicios completados (ASC)</option>
+                                                    <option id="btnquizzes">Puntuación promedio en quizzes (ASC)</option> 
+                                                 </select>
                                                 </th>
-                                                <th>
-                                                    <button class="btn-cont" id="aveord">Avance General % (ASC)</button>
-                                                </th>
-                                                <th>
-                                                    <button class="btn-cont" id="btnejerCom">Ejercicios completados (ASC)</button>
-                                                </th>
-                                                <th>
-                                                    <button class="btn-cont" id="btnquizzes">Puntuación promedio en quizzes (ASC)</button>
-                                                </th>
-
                                             </tr>
                                             <tr>
                                                 <td class="name">
