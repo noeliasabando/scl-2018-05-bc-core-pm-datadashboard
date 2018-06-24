@@ -39,12 +39,12 @@ botonCohort.addEventListener("click", (event) => {
 
 //otros botones
 
-let botonCohort = document.getElementById("nameord") //falta ver como ordenar
-botonCohort.addEventListener("click", (event) => {
+let butName = document.getElementById("nameord") //falta ver como ordenar
+butName.addEventListener("click", (event) => {
     imprimirLista(userStats);
 })
-let botonCohort = document.getElementById("aveord") //falta ver como ordenar
-botonCohort.addEventListener("click", (event) => {
+let butAve = document.getElementById("aveord") //falta ver como ordenar
+butCohort.addEventListener("click", (event) => {
     imprimirLista(userStats);
 })
 
