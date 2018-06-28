@@ -1,10 +1,3 @@
-window.addEventListener('load', home);
-
-function home() {
-}
-// agregar cuadros ranking aqui
-
-
 //Busqueda
 let inputText = document.getElementById("InputSearch");
 inputText.addEventListener("keypress", (event) => {
@@ -33,33 +26,35 @@ function imprimirLista(usersList) {
     })
 }
 
+
 //Menu
-let botonCohort = document.getElementById("btn")
-botonCohort.addEventListener("click", (event) => {
-    imprimirLista(userStats);
-})
-
-//otros botones
-
-
 function seleccion() {
     if (document.getElementById("nameord").selected == true) {
         let nombreOrdenado = window.sortUsers(userStats, "name", "ASC")
         imprimirLista(nombreOrdenado);
-        console.log("0");
     }
     if (document.getElementById("aveord").selected == true) {
         let avanceGral = window.sortUsers(userStats, "percent", "ASC")
         imprimirLista(avanceGral);
-        console.log("1");
     } else if (document.getElementById("btnejerCom").selected == true) {
         let ejerciciosOrdenados = window.sortUsers(userStats, "exercises percent", "ASC")
         imprimirLista(ejerciciosOrdenados);
-        console.log(" 2");
 
     } else if (document.getElementById("btnquizzes").selected == true) {
         let promPtosQuizzes = window.sortUsers(userStats, "quizzes scoreAvg", "ASC")
         imprimirLista(promPtosQuizzes);
-        console.log(" 3");
     }
+}
+
+let botonCohort = document.getElementById("btn")
+botonCohort.addEventListener("click", (event) => {
+    window.location.reload(true);
+})
+
+function unhide() {
+    let show = document.getElementById("studentlist");
+    show.style.display = "block";
+    let hide = document.getElementById("bienvenida");
+    hide.style.display = "none";
+    imprimirLista(userStats);
 }
